@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mane Financial — Option D: Radical Simplicity | Dragon's Gate</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Inconsolata:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════
+   TOKENS — restraint is the point
+════════════════════════════════ */
+:root {
+  --white:   #ffffff;
+  --near:    #f9f8f6;
+  --sand:    #ede9e1;
+  --sand2:   #ddd8cc;
+  --ink:     #1a1916;
+  --ink2:    #2e2c28;
+  --mid:     #8a8780;
+  --taupe:   #b8a898;
+  --accent:  #2d5a3d;   /* single deep sage green — restrained, trustworthy */
+  --border:  rgba(26,25,22,0.08);
+  --serif:   'Playfair Display', Georgia, serif;
+  --sans:    'Plus Jakarta Sans', sans-serif;
+  --mono:    'Inconsolata', monospace;
+  --ease:    cubic-bezier(0.22, 1, 0.36, 1);
+  --nav-h:   64px;
+  --max:     960px;     /* narrower max-width — Tash Lends reads column-like */
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+}
+
+/* ════════════════════════════════
+   NAV — whisper quiet
+════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; z-index: 500;
+}
+.nav-logo {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.2rem; color: var(--ink);
+  text-decoration: none; font-weight: 400;
+}
+.nav-links {
+  display: flex; align-items: center;
+  gap: 36px; list-style: none;
+}
+.nav-links a {
+  font-size: 0.8rem; font-weight: 400;
+  color: var(--mid); text-decoration: none;
+  transition: color 0.2s; letter-spacing: 0.01em;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-book {
+  font-size: 0.8rem; font-weight: 600;
+  color: var(--accent); text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 1px; transition: opacity 0.2s;
+}
+.nav-book:hover { opacity: 0.7; }
+
+/* ════════════════════════════════
+   HERO — the whole point
+   One statement. One CTA. Space.
+════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  padding-top: var(--nav-h);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-left: 48px;
+  padding-right: 48px;
+  position: relative;
+}
+
+/* Very subtle radial warmth — barely visible */
+#hero::before {
+  content: '';
+  position: absolute;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(232,233,225,0.6) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero-label {
+  font-family: var(--mono); font-size: 0.68rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--taupe); margin-bottom: 40px;
+  display: flex; align-items: center; gap: 14px;
+  animation: fadeUp 0.8s var(--ease) 0.1s both;
+}
+.hero-label::before,
+.hero-label::after {
+  content: '';
+  display: block; width: 32px; height: 1px;
+  background: var(--sand2);
+}
+
+.hero-h1 {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(3.2rem, 7vw, 6.4rem);
+  font-weight: 400; line-height: 1.08;
+  letter-spacing: -0.02em; color: var(--ink);
+  max-width: 820px; margin-bottom: 28px;
+  animation: fadeUp 0.9s var(--ease) 0.25s both;
+}
+.hero-h1 strong {
+  font-style: normal; font-weight: 700;
+}
+
+.hero-sub {
+  font-size: 1.05rem; line-height: 1.76;
+  color: var(--mid); max-width: 520px;
+  font-weight: 300; margin-bottom: 48px;
+  animation: fadeUp 0.9s var(--ease) 0.4s both;
+}
+
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 0.88rem; font-weight: 600;
+  color: var(--white); background: var(--ink);
+  padding: 16px 36px; border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.25s var(--ease);
+  animation: fadeUp 0.9s var(--ease) 0.55s both;
+}
+.hero-cta:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(45,90,61,0.2);
+}
+
+/* Floating proof beneath CTA */
+.hero-proof {
+  display: flex; align-items: center; gap: 24px;
+  margin-top: 56px; color: var(--taupe);
+  font-size: 0.78rem;
+  animation: fadeUp 0.9s var(--ease) 0.7s both;
+}
+.hero-proof-dot { width: 3px; height: 3px; background: var(--sand2); border-radius: 50%; }
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute; bottom: 36px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--taupe);
+  animation: fadeUp 1s var(--ease) 1s both;
+}
+.scroll-arrow {
+  width: 1px; height: 32px;
+  background: linear-gradient(180deg, var(--sand2), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* ════════════════════════════════
+   SHARED
+════════════════════════════════ */
+.section { padding: 100px 48px; }
+.col { max-width: var(--max); margin: 0 auto; }
+
+.sec-label {
+  font-family: var(--mono); font-size: 0.62rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--taupe); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.sec-label::before {
+  content: ''; display: block;
+  width: 20px; height: 1px; background: var(--sand2);
+}
+
+.sec-h2 {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400; line-height: 1.12;
+  letter-spacing: -0.02em; color: var(--ink);
+  margin-bottom: 20px;
+}
+.sec-h2 strong { font-style: normal; font-weight: 700; }
+
+.sec-lead {
+  font-size: 1rem; line-height: 1.76;
+  color: var(--mid); max-width: 560px;
+  font-weight: 300;
+}
+
+/* ════════════════════════════════
+   CLARITY SECTION — what Tash does
+   with its "We help you navigate"
+   statement section
+════════════════════════════════ */
+#clarity {
+  background: var(--near);
+  padding: 120px 48px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.clarity-inner { max-width: 760px; margin: 0 auto; }
+.clarity-h {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 400; line-height: 1.18;
+  color: var(--ink); margin-bottom: 24px;
+}
+.clarity-h strong { font-style: normal; font-weight: 700; }
+.clarity-p {
+  font-size: 1rem; line-height: 1.8;
+  color: var(--mid); font-weight: 300;
+  margin-bottom: 14px;
+}
+
+/* ════════════════════════════════
+   HOW IT WORKS — Tash's numbered
+   steps approach, done cleanly
+════════════════════════════════ */
+#how { background: var(--white); }
+.how-steps {
+  display: flex; flex-direction: column;
+  gap: 0; margin-top: 64px;
+  border-top: 1px solid var(--border);
+}
+.how-step {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 32px; align-items: start;
+  padding: 44px 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.how-step:hover { background: var(--near); margin: 0 -48px; padding: 44px 48px; }
+.how-num {
+  font-family: var(--serif); font-style: italic;
+  font-size: 2rem; color: var(--sand2);
+  line-height: 1; transition: color 0.2s;
+  padding-top: 3px;
+}
+.how-step:hover .how-num { color: var(--accent); }
+.how-title {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.3rem; color: var(--ink);
+  margin-bottom: 10px; font-weight: 400;
+}
+.how-desc {
+  font-size: 0.9rem; line-height: 1.74;
+  color: var(--mid); font-weight: 300;
+  max-width: 520px;
+}
+
+/* ════════════════════════════════
+   SERVICES — minimal list, like
+   Tash's calculator links section
+════════════════════════════════ */
+#services { background: var(--near); }
+.services-intro {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start; margin-bottom: 64px;
+}
+.svc-list-d {
+  display: flex; flex-direction: column;
+  border-top: 1px solid var(--border);
+}
+.svc-d {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  transition: padding-left 0.25s var(--ease);
+  cursor: pointer;
+}
+.svc-d:hover { padding-left: 10px; }
+.svc-d:hover .svc-d-name { color: var(--accent); }
+.svc-d:hover .svc-d-arr { transform: translateX(4px); color: var(--accent); }
+.svc-d-name {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.05rem; color: var(--ink);
+  transition: color 0.2s; font-weight: 400;
+}
+.svc-d-arr {
+  font-size: 0.9rem; color: var(--sand2);
+  transition: transform 0.2s, color 0.2s;
+}
+
+/* ════════════════════════════════
+   CALCULATOR — Tash has a full
+   resources/calculator hub. We
+   do one clean inline calc + links.
+════════════════════════════════ */
+#calculator { background: var(--white); }
+.calc-layout {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
+}
+.calc-tools-d {
+  display: flex; flex-direction: column; gap: 0;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+.calc-tool-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 0; border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  transition: padding-left 0.22s var(--ease);
+}
+.calc-tool-link:hover { padding-left: 8px; }
+.calc-tool-link:hover .ctl-name { color: var(--accent); }
+.ctl-left { display: flex; align-items: center; gap: 14px; }
+.ctl-icon { font-size: 1rem; width: 20px; text-align: center; }
+.ctl-name { font-size: 0.88rem; font-weight: 500; color: var(--ink); transition: color 0.2s; }
+.ctl-desc { font-size: 0.72rem; color: var(--mid); margin-top: 1px; font-weight: 300; }
+.ctl-arr { font-size: 0.8rem; color: var(--sand2); }
+
+/* Calculator widget — clean, light */
+.calc-d {
+  background: var(--near);
+  border: 1px solid var(--border);
+  border-radius: 4px; padding: 36px;
+}
+.calc-d-title {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.3rem; color: var(--ink);
+  margin-bottom: 4px; font-weight: 400;
+}
+.calc-d-sub {
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.1em; color: var(--taupe);
+  margin-bottom: 28px;
+}
+.cdf { margin-bottom: 20px; }
+.cdf-label {
+  display: flex; justify-content: space-between;
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--taupe); margin-bottom: 8px;
+}
+.cdf-label span { color: var(--accent); font-weight: 500; }
+.cdf-row {
+  display: flex; align-items: center;
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 3px; overflow: hidden;
+  transition: border-color 0.2s;
+}
+.cdf-row:focus-within { border-color: var(--accent); }
+.cdf-pre {
+  padding: 0 12px; font-family: var(--mono); font-size: 0.78rem;
+  color: var(--taupe); border-right: 1px solid var(--border);
+  height: 42px; display: flex; align-items: center; flex-shrink: 0;
+}
+.cdf-row input[type=number] {
+  flex: 1; border: none; background: transparent;
+  padding: 0 12px; height: 42px;
+  font-family: var(--mono); font-size: 0.9rem;
+  color: var(--ink); outline: none;
+}
+input[type=range] {
+  width: 100%; accent-color: var(--accent);
+  height: 2px; margin-top: 10px; cursor: pointer;
+  border-radius: 2px;
+}
+.calc-d-result {
+  background: var(--ink); border-radius: 3px;
+  padding: 24px; text-align: center; margin: 8px 0 12px;
+}
+.cdr-label {
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-bottom: 8px;
+}
+.cdr-num {
+  font-family: var(--serif); font-style: italic;
+  font-size: 3rem; color: var(--white); line-height: 1;
+}
+.cdr-sub { font-size: 0.65rem; color: rgba(255,255,255,0.3); margin-top: 6px; font-family: var(--mono); }
+.calc-d-btn {
+  width: 100%; padding: 13px;
+  background: var(--accent); border: none; border-radius: 3px;
+  color: var(--white); font-family: var(--sans);
+  font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.calc-d-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+/* ════════════════════════════════
+   TEAM — Tash leans on personal
+   brand. We use a simple clean
+   grid with names prominent.
+════════════════════════════════ */
+#team { background: var(--near); border-top: 1px solid var(--border); }
+.team-intro { max-width: 560px; margin-bottom: 64px; }
+.team-d-grid {
+  display: grid; grid-template-columns: repeat(2,1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+}
+.tcd {
+  background: var(--white); padding: 40px;
+  cursor: pointer; transition: background 0.22s;
+  position: relative;
+}
+.tcd:hover { background: var(--near); }
+.tcd:hover .tcd-cta { color: var(--accent); }
+.tcd-role {
+  font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--taupe); margin-bottom: 14px;
+}
+.tcd-name {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.6rem; color: var(--ink);
+  margin-bottom: 8px; font-weight: 400; line-height: 1.1;
+}
+.tcd-specialism {
+  font-size: 0.8rem; color: var(--mid);
+  font-weight: 300; line-height: 1.6; margin-bottom: 20px;
+}
+.tcd-cr {
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.06em; color: var(--sand2);
+  margin-bottom: 20px;
+}
+.tcd-cta {
+  font-family: var(--mono); font-size: 0.62rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--taupe); transition: color 0.2s;
+  display: flex; align-items: center; gap: 6px;
+}
+
+/* ════════════════════════════════
+   REVIEWS — three clean quotes,
+   wide and spaced
+════════════════════════════════ */
+#reviews { background: var(--white); }
+.review-d-stack {
+  display: flex; flex-direction: column;
+  gap: 0; margin-top: 64px;
+  border-top: 1px solid var(--border);
+}
+.rv-d {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr 260px;
+  gap: 48px; align-items: center;
+}
+.rv-d-quote {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.15rem; line-height: 1.72;
+  color: var(--ink); font-weight: 400;
+}
+.rv-d-stars { color: var(--accent); font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 8px; }
+.rv-d-name { font-size: 0.82rem; font-weight: 600; color: var(--ink); }
+.rv-d-meta { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--taupe); margin-top: 4px; }
+
+/* ════════════════════════════════
+   LENDERS — simple text list,
+   very Tash
+════════════════════════════════ */
+#lenders { background: var(--near); border-top: 1px solid var(--border); }
+.lenders-d-inner { max-width: var(--max); margin: 0 auto; }
+.lenders-d-flow {
+  display: flex; flex-wrap: wrap; gap: 0;
+  margin-top: 40px; border-top: 1px solid var(--border);
+}
+.lender-d {
+  font-size: 0.84rem; color: var(--mid); font-weight: 300;
+  padding: 10px 18px 10px 0;
+  display: flex; align-items: center; gap: 10px;
+}
+.lender-d::after { content: '·'; color: var(--sand2); font-size: 0.7rem; }
+.lender-d:last-child::after { content: ''; }
+.lenders-d-count {
+  font-family: var(--serif); font-style: italic;
+  font-size: 2.4rem; color: var(--ink);
+  margin-bottom: 8px; display: block;
+}
+
+/* ════════════════════════════════
+   NEWSLETTER / STAY INFORMED
+   Tash makes this a section.
+════════════════════════════════ */
+#newsletter {
+  background: var(--sand); padding: 100px 48px;
+  text-align: center; border-top: 1px solid var(--border);
+}
+.nl-inner { max-width: 560px; margin: 0 auto; }
+.nl-h {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color: var(--ink); margin-bottom: 16px; font-weight: 400;
+}
+.nl-sub {
+  font-size: 0.92rem; color: var(--mid);
+  line-height: 1.72; font-weight: 300; margin-bottom: 36px;
+}
+.nl-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; }
+.nl-input {
+  flex: 1; padding: 13px 18px;
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 100px; font-family: var(--sans); font-size: 0.88rem;
+  color: var(--ink); outline: none; transition: border-color 0.2s;
+}
+.nl-input:focus { border-color: var(--accent); }
+.nl-input::placeholder { color: var(--taupe); }
+.nl-btn {
+  padding: 13px 24px; background: var(--ink); border: none;
+  border-radius: 100px; color: var(--white);
+  font-family: var(--sans); font-size: 0.82rem; font-weight: 600;
+  cursor: pointer; white-space: nowrap; transition: all 0.2s;
+}
+.nl-btn:hover { background: var(--accent); }
+.nl-note {
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.08em; color: var(--taupe);
+  margin-top: 14px;
+}
+
+/* ════════════════════════════════
+   BOOKING — clean, centre-aligned
+════════════════════════════════ */
+#booking {
+  background: var(--white); padding: 120px 48px;
+  text-align: center; border-top: 1px solid var(--border);
+}
+.booking-inner { max-width: var(--max); margin: 0 auto; }
+.book-h {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  color: var(--ink); margin: 20px 0 16px; font-weight: 400; line-height: 1.1;
+}
+.book-h strong { font-style: normal; font-weight: 700; }
+.book-sub {
+  font-size: 1rem; color: var(--mid);
+  font-weight: 300; line-height: 1.72;
+  max-width: 480px; margin: 0 auto 48px;
+}
+.book-form {
+  background: var(--near); border: 1px solid var(--border);
+  border-radius: 4px; padding: 40px;
+  max-width: 560px; margin: 0 auto;
+  text-align: left;
+}
+.bf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.bf label {
+  display: block; font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--taupe); margin-bottom: 5px;
+}
+.bf input, .bf select {
+  width: 100%; padding: 11px 14px;
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 3px; font-family: var(--sans); font-size: 0.88rem;
+  color: var(--ink); outline: none; transition: border-color 0.2s;
+}
+.bf input:focus, .bf select:focus { border-color: var(--accent); }
+.bf input::placeholder { color: var(--taupe); }
+.bf select option { background: var(--white); }
+.book-submit {
+  width: 100%; padding: 14px; background: var(--ink); border: none;
+  border-radius: 3px; color: var(--white);
+  font-family: var(--sans); font-size: 0.88rem; font-weight: 600;
+  cursor: pointer; margin-top: 8px; transition: all 0.22s var(--ease);
+}
+.book-submit:hover { background: var(--accent); transform: translateY(-1px); }
+.book-note {
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.08em;
+  color: var(--taupe); text-align: center; margin-top: 12px; line-height: 1.5;
+}
+
+/* ════════════════════════════════
+   FOOTER — very Tash: minimal,
+   multi-column, all in one clean
+   typographic block
+════════════════════════════════ */
+footer {
+  background: var(--ink); padding: 64px 48px 40px;
+}
+.footer-inner { max-width: var(--max); margin: 0 auto; }
+.footer-top {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 48px; padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 28px;
+}
+.f-brand {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.3rem; color: var(--white);
+  font-weight: 400; margin-bottom: 12px;
+}
+.f-desc { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.7; max-width: 220px; }
+.f-col-title {
+  font-family: var(--mono); font-size: 0.56rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.2); margin-bottom: 16px;
+}
+.f-links { list-style: none; }
+.f-links li { margin-bottom: 9px; }
+.f-links a { font-size: 0.78rem; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+.f-links a:hover { color: rgba(255,255,255,0.75); }
+.footer-legal {
+  font-family: var(--mono); font-size: 0.58rem;
+  color: rgba(255,255,255,0.15); line-height: 1.7;
+}
+
+/* ════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════ */
+[data-reveal] {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+[data-reveal].vis { opacity: 1; transform: none; }
+[data-reveal="d1"] { transition-delay: 0.1s; }
+[data-reveal="d2"] { transition-delay: 0.18s; }
+[data-reveal="d3"] { transition-delay: 0.26s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Mane Financial</a>
+  <ul class="nav-links">
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#calculator">Calculators</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#booking" class="nav-book">Book a call →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-label">Brisbane Mortgage Brokers</div>
+
+  <h1 class="hero-h1">
+    We help you navigate<br>
+    home loans with <strong>clarity.</strong>
+  </h1>
+
+  <p class="hero-sub">
+    Whether you're buying your first home, refinancing, or growing a property portfolio — Mane Financial offers clear guidance, practical expertise, and genuine ongoing support.
+  </p>
+
+  <a href="#booking" class="hero-cta">Book a free call →</a>
+
+  <div class="hero-proof">
+    <span>5.0 ★ Google Reviews</span>
+    <span class="hero-proof-dot"></span>
+    <span>40+ lenders on panel</span>
+    <span class="hero-proof-dot"></span>
+    <span>$0 broker fee</span>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-arrow"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- CLARITY -->
+<section id="clarity">
+  <div class="clarity-inner">
+    <h2 class="clarity-h" data-reveal>
+      <strong>Expert brokers</strong> who search 40+ lenders,<br>
+      handle all the paperwork, and stay with<br>
+      you long after settlement.
+    </h2>
+    <p class="clarity-p" data-reveal="d1">
+      Mane Financial is a Brisbane-based mortgage brokerage with four specialist brokers covering residential, investment, construction, and commercial lending. We work for you — not the banks.
+    </p>
+    <p class="clarity-p" data-reveal="d1">
+      Our service is always free to clients. We're paid by lenders, which means our only incentive is finding you the right loan.
+    </p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="section">
+  <div class="col">
+    <div class="sec-label" data-reveal>How it works</div>
+    <h2 class="sec-h2" data-reveal>Simple from the start.</h2>
+    <p class="sec-lead" data-reveal="d1">Four steps from first conversation to settlement. Then we stay in your corner.</p>
+
+    <div class="how-steps">
+      <div class="how-step" data-reveal>
+        <div class="how-num">1</div>
+        <div>
+          <div class="how-title">Start with a conversation</div>
+          <div class="how-desc">We talk through your situation, goals, and what you want from your loan. No forms, no jargon — just a genuine conversation about where you're at and where you want to be.</div>
+        </div>
+      </div>
+      <div class="how-step" data-reveal="d1">
+        <div class="how-num">2</div>
+        <div>
+          <div class="how-title">We search the market for you</div>
+          <div class="how-desc">We compare 40+ lenders — not just on rate, but on policy, turnaround time, and structure. Then we explain your options clearly and recommend the right fit for your situation.</div>
+        </div>
+      </div>
+      <div class="how-step" data-reveal="d2">
+        <div class="how-num">3</div>
+        <div>
+          <div class="how-title">We handle everything</div>
+          <div class="how-desc">Paperwork, lender communication, solicitor coordination — all managed by us. Your job is to find the right home. Ours is to make sure the finance is sorted.</div>
+        </div>
+      </div>
+      <div class="how-step" data-reveal="d3">
+        <div class="how-num">4</div>
+        <div>
+          <div class="how-title">Stay in touch</div>
+          <div class="how-desc">After settlement we monitor your loan, check in every 6 months, and reach out when market conditions or your circumstances change. Your loan should keep working for you.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <div class="col">
+    <div class="services-intro">
+      <div>
+        <div class="sec-label" data-reveal>Services</div>
+        <h2 class="sec-h2" data-reveal>Every lending need, <em style="font-style:italic">covered.</em></h2>
+        <p class="sec-lead" data-reveal="d1" style="margin-top:16px">Six service areas. One team. The same quality of care regardless of loan size or complexity.</p>
+      </div>
+      <div></div>
+    </div>
+    <div class="svc-list-d">
+      <a class="svc-d" href="#booking" data-reveal><span class="svc-d-name">First Home Buyers</span><span class="svc-d-arr">→</span></a>
+      <a class="svc-d" href="#booking" data-reveal="d1"><span class="svc-d-name">Refinance & Investment</span><span class="svc-d-arr">→</span></a>
+      <a class="svc-d" href="#booking" data-reveal="d1"><span class="svc-d-name">Construction & Renovation</span><span class="svc-d-arr">→</span></a>
+      <a class="svc-d" href="#booking" data-reveal="d2"><span class="svc-d-name">Asset Finance</span><span class="svc-d-arr">→</span></a>
+      <a class="svc-d" href="#booking" data-reveal="d2"><span class="svc-d-name">Commercial Property</span><span class="svc-d-arr">→</span></a>
+      <a class="svc-d" href="#booking" data-reveal="d3"><span class="svc-d-name">Business Loans</span><span class="svc-d-arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section id="calculator" class="section">
+  <div class="col">
+    <div class="calc-layout">
+      <div>
+        <div class="sec-label" data-reveal>Calculators</div>
+        <h2 class="sec-h2" data-reveal>Work out<br>your numbers.</h2>
+        <p class="sec-lead" data-reveal="d1" style="margin-top:16px">Use our calculators to explore what's possible before you call us. Then we'll turn those numbers into a real plan.</p>
+        <div class="calc-tools-d" data-reveal="d2">
+          <a class="calc-tool-link" href="#calculator">
+            <div class="ctl-left"><span class="ctl-icon">🏠</span><div><div class="ctl-name">Repayment Calculator</div><div class="ctl-desc">Estimate your monthly repayments</div></div></div>
+            <span class="ctl-arr">→</span>
+          </a>
+          <a class="calc-tool-link" href="#calculator">
+            <div class="ctl-left"><span class="ctl-icon">💪</span><div><div class="ctl-name">Borrowing Power</div><div class="ctl-desc">How much could you borrow?</div></div></div>
+            <span class="ctl-arr">→</span>
+          </a>
+          <a class="calc-tool-link" href="#calculator">
+            <div class="ctl-left"><span class="ctl-icon">🔄</span><div><div class="ctl-name">Refinance Feasibility</div><div class="ctl-desc">Is now the right time to switch?</div></div></div>
+            <span class="ctl-arr">→</span>
+          </a>
+          <a class="calc-tool-link" href="#calculator">
+            <div class="ctl-left"><span class="ctl-icon">📍</span><div><div class="ctl-name">Stamp Duty (QLD)</div><div class="ctl-desc">Calculate what you'll owe</div></div></div>
+            <span class="ctl-arr">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="calc-d" data-reveal="d2">
+        <div class="calc-d-title">Repayment calculator</div>
+        <div class="calc-d-sub">// indicative estimate only</div>
+
+        <div class="cdf">
+          <div class="cdf-label">Loan amount <span id="dA-d">$600,000</span></div>
+          <div class="cdf-row"><span class="cdf-pre">$</span><input type="number" id="d-amt" value="600000" oninput="cD()"></div>
+          <input type="range" min="50000" max="2000000" step="10000" value="600000" oninput="document.getElementById('d-amt').value=this.value;document.getElementById('dA-d').textContent='$'+parseInt(this.value).toLocaleString();cD()">
+        </div>
+        <div class="cdf">
+          <div class="cdf-label">Interest rate <span id="dR-d">5.74%</span></div>
+          <div class="cdf-row"><span class="cdf-pre">%</span><input type="number" id="d-rate" value="5.74" step="0.01" oninput="cD();document.getElementById('dR-d').textContent=this.value+'%'"></div>
+          <input type="range" min="3" max="12" step="0.05" value="5.74" oninput="document.getElementById('d-rate').value=parseFloat(this.value).toFixed(2);document.getElementById('dR-d').textContent=parseFloat(this.value).toFixed(2)+'%';cD()">
+        </div>
+        <div class="cdf">
+          <div class="cdf-label">Loan term <span id="dT-d">30 years</span></div>
+          <div class="cdf-row"><span class="cdf-pre">yr</span><input type="number" id="d-term" value="30" min="5" max="30" oninput="cD();document.getElementById('dT-d').textContent=this.value+' years'"></div>
+          <input type="range" min="5" max="30" value="30" oninput="document.getElementById('d-term').value=this.value;document.getElementById('dT-d').textContent=this.value+' years';cD()">
+        </div>
+
+        <div class="calc-d-result">
+          <div class="cdr-label">Monthly repayment (est.)</div>
+          <div class="cdr-num" id="d-out">$3,480</div>
+          <div class="cdr-sub">Principal & Interest · indicative only</div>
+        </div>
+        <button class="calc-d-btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Talk to a broker about this →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LENDERS -->
+<section id="lenders">
+  <div class="lenders-d-inner">
+    <div class="sec-label" data-reveal>Our panel</div>
+    <span class="lenders-d-count" data-reveal>40+</span>
+    <p class="sec-lead" data-reveal="d1">lenders searched for every client — major banks, regional banks, and non-bank lenders.</p>
+    <div class="lenders-d-flow" data-reveal="d2">
+      <span class="lender-d">CommBank</span>
+      <span class="lender-d">Westpac</span>
+      <span class="lender-d">ANZ</span>
+      <span class="lender-d">NAB</span>
+      <span class="lender-d">Macquarie</span>
+      <span class="lender-d">Bank of Queensland</span>
+      <span class="lender-d">ING</span>
+      <span class="lender-d">Suncorp</span>
+      <span class="lender-d">Bankwest</span>
+      <span class="lender-d">St George</span>
+      <span class="lender-d">Liberty Financial</span>
+      <span class="lender-d">Pepper Money</span>
+      <span class="lender-d">La Trobe</span>
+      <span class="lender-d">Resimac</span>
+      <span class="lender-d">Bluestone</span>
+      <span class="lender-d">Heritage Bank</span>
+      <span class="lender-d">AMP Bank</span>
+      <span class="lender-d">+ 23 more</span>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="section">
+  <div class="col">
+    <div class="sec-label" data-reveal>Client stories</div>
+    <h2 class="sec-h2" data-reveal>What our clients say.</h2>
+
+    <div class="review-d-stack">
+      <div class="rv-d" data-reveal>
+        <p class="rv-d-quote">"Shamus guided us through our first home purchase with patience and total clarity. We settled in 6 weeks and never once felt uncertain about the next step."</p>
+        <div>
+          <div class="rv-d-stars">★★★★★</div>
+          <div class="rv-d-name">Sarah & Tom M.</div>
+          <div class="rv-d-meta">First Home Buyers · Bulimba, QLD</div>
+        </div>
+      </div>
+      <div class="rv-d" data-reveal="d1">
+        <p class="rv-d-quote">"Naveed found a rate 0.65% better than our existing bank. The refinance was complete in under three weeks. The savings are very real — every single month."</p>
+        <div>
+          <div class="rv-d-stars">★★★★★</div>
+          <div class="rv-d-name">David K.</div>
+          <div class="rv-d-meta">Property Investor · Camp Hill, QLD</div>
+        </div>
+      </div>
+      <div class="rv-d" data-reveal="d2">
+        <p class="rv-d-quote">"Self-employed with complex income — we assumed approval would be difficult. Shaneal knew exactly which lender to approach. Approved on the first application."</p>
+        <div>
+          <div class="rv-d-stars">★★★★★</div>
+          <div class="rv-d-name">Michael & Lisa P.</div>
+          <div class="rv-d-meta">Self-Employed · Paddington, QLD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="section">
+  <div class="col">
+    <div class="team-intro">
+      <div class="sec-label" data-reveal>The team</div>
+      <h2 class="sec-h2" data-reveal>Four specialists.<br>One shared commitment.</h2>
+      <p class="sec-lead" data-reveal="d1" style="margin-top:16px">Every Mane Financial client gets access to the right specialist for their situation — residential, investment, construction, or complex lending.</p>
+    </div>
+    <div class="team-d-grid">
+      <div class="tcd" data-reveal>
+        <div class="tcd-role">Director & Finance Manager</div>
+        <div class="tcd-name">Shamus Devereux</div>
+        <div class="tcd-specialism">Residential lending, commercial loans, and first home buyers. Shamus founded Mane Financial and personally oversees every client relationship.</div>
+        <div class="tcd-cr">CR No. 502350</div>
+        <div class="tcd-cta">Book a call →</div>
+      </div>
+      <div class="tcd" data-reveal="d1">
+        <div class="tcd-role">Property & Finance Manager</div>
+        <div class="tcd-name">Naveed Hazraty</div>
+        <div class="tcd-specialism">Investment property finance and refinancing strategy. Naveed specialises in finding better rates for existing borrowers.</div>
+        <div class="tcd-cr">CR No. 522372</div>
+        <div class="tcd-cta">Book a call →</div>
+      </div>
+      <div class="tcd" data-reveal="d2">
+        <div class="tcd-role">Property & Finance Manager</div>
+        <div class="tcd-name">Brad Nicoll</div>
+        <div class="tcd-specialism">Construction and renovation lending, asset finance, and commercial scenarios. Brad brings hands-on building experience to complex loans.</div>
+        <div class="tcd-cr">CR No. 547980</div>
+        <div class="tcd-cta">Book a call →</div>
+      </div>
+      <div class="tcd" data-reveal="d3">
+        <div class="tcd-role">Property & Finance Manager</div>
+        <div class="tcd-name">Shaneal Sharma</div>
+        <div class="tcd-specialism">Complex income situations, self-employed clients, and non-standard lending scenarios. Shaneal finds solutions others can't.</div>
+        <div class="tcd-cr">CR No. 595594</div>
+        <div class="tcd-cta">Book a call →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="nl-inner">
+    <div class="sec-label" style="justify-content:center" data-reveal>Stay informed</div>
+    <h2 class="nl-h" data-reveal>Keep up with the market.</h2>
+    <p class="nl-sub" data-reveal="d1">Subscribe for interest rate updates, government scheme changes, and key insights for property buyers — delivered clearly, without the noise.</p>
+    <div class="nl-form" data-reveal="d2">
+      <input class="nl-input" type="email" placeholder="your@email.com">
+      <button class="nl-btn">Subscribe</button>
+    </div>
+    <p class="nl-note" data-reveal="d2">No spam · Unsubscribe any time</p>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="booking">
+  <div class="booking-inner">
+    <div class="sec-label" style="justify-content:center" data-reveal>Ready to start</div>
+    <h2 class="book-h" data-reveal>Book a <strong>free call.</strong></h2>
+    <p class="book-sub" data-reveal="d1">No obligation. No cost. We'll call you within 4 business hours.</p>
+    <div class="book-form" data-reveal="d2">
+      <div class="bf-row">
+        <div class="bf"><label>First name</label><input type="text" placeholder="Jane"></div>
+        <div class="bf"><label>Last name</label><input type="text" placeholder="Smith"></div>
+        <div class="bf"><label>Phone</label><input type="tel" placeholder="04xx xxx xxx"></div>
+        <div class="bf"><label>Email</label><input type="email" placeholder="jane@email.com"></div>
+      </div>
+      <div class="bf" style="margin-bottom:10px">
+        <label>I am looking to</label>
+        <select>
+          <option>Buy my first home</option>
+          <option>Purchase an investment property</option>
+          <option>Refinance my existing loan</option>
+          <option>Build or renovate</option>
+          <option>Finance a vehicle or equipment</option>
+          <option>Get a business or commercial loan</option>
+        </select>
+      </div>
+      <button class="book-submit">Book my free call →</button>
+      <p class="book-note">Your data is never sold · Mane Financial Pty Ltd ABN 65 620 458 880</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="f-brand">Mane Financial</div>
+        <div class="f-desc">Brisbane's trusted mortgage brokerage. Helping Australians buy, build, and invest with confidence since 2018.</div>
+      </div>
+      <div>
+        <div class="f-col-title">Services</div>
+        <ul class="f-links">
+          <li><a href="#">First Home Buyers</a></li>
+          <li><a href="#">Refinance</a></li>
+          <li><a href="#">Construction</a></li>
+          <li><a href="#">Asset Finance</a></li>
+          <li><a href="#">Commercial</a></li>
+          <li><a href="#">Business Loans</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="f-col-title">Calculators</div>
+        <ul class="f-links">
+          <li><a href="#">Repayment</a></li>
+          <li><a href="#">Borrowing Power</a></li>
+          <li><a href="#">Refinance Check</a></li>
+          <li><a href="#">Stamp Duty</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="f-col-title">Company</div>
+        <ul class="f-links">
+          <li><a href="#">Meet the Team</a></li>
+          <li><a href="#">Book a Call</a></li>
+          <li><a href="#">Newsletter</a></li>
+          <li><a href="#">Complaints</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      Mane Financial Pty Ltd ABN 65 620 458 880. Australian Credit Representative Number 502093 is an authorised representative of QED Risk Services Pty Ltd, Australian Credit Licence Number 387856. General information only — not personal advice. Consider your individual circumstances before acting. © 2025 Mane Financial Pty Ltd
+    </div>
+  </div>
+</footer>
+
+<script>
+function cD() {
+  const P = parseFloat(document.getElementById('d-amt').value) || 0;
+  const r = (parseFloat(document.getElementById('d-rate').value) || 5.74) / 100 / 12;
+  const n = (parseFloat(document.getElementById('d-term').value) || 30) * 12;
+  const m = r === 0 ? P / n : P * r * Math.pow(1+r,n) / (Math.pow(1+r,n) - 1);
+  document.getElementById('d-out').textContent = m > 0 ? '$' + Math.round(m).toLocaleString('en-AU') : '—';
+}
+cD();
+const obs = new IntersectionObserver(e => {
+  e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('vis'); obs.unobserve(x.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
