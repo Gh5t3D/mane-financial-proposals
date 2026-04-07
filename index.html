@@ -15,10 +15,10 @@
   --off:     rgba(255,255,255,0.55);
   --dim:     rgba(255,255,255,0.28);
 
-  --a-amber: #f5a623;
-  --b-terra: #c0522a;
-  --c-forest:#1f3d2e;
-  --c-copper:#b5632a;
+  --a-col:   #f5a623;
+  --b-col:   #c0522a;
+  --c-col:   #b5632a;
+  --d-col:   #2d5a3d;
 
   --serif: 'DM Serif Display', Georgia, serif;
   --sans:  'Epilogue', sans-serif;
@@ -36,7 +36,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── HEADER ─────────────────────────── */
+/* ── HEADER ─────────────────────── */
 header {
   padding: 64px 80px 0;
   max-width: 1400px;
@@ -52,22 +52,18 @@ header {
   margin-bottom: 56px;
 }
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  display: flex; align-items: center; gap: 12px;
 }
 .brand-mark {
   width: 36px; height: 36px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
+  border: 1px solid var(--border); border-radius: 4px;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--mono); font-size: 0.6rem;
   letter-spacing: 0.1em; color: var(--dim);
 }
 .brand-name {
   font-family: var(--mono); font-size: 0.65rem;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--dim);
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim);
 }
 .header-meta {
   font-family: var(--mono); font-size: 0.58rem;
@@ -84,95 +80,74 @@ header {
 }
 .subline {
   font-size: 1rem; color: var(--off);
-  line-height: 1.72; max-width: 560px;
-  font-weight: 300;
+  line-height: 1.72; max-width: 580px;
+  font-weight: 300; margin-bottom: 56px;
 }
 
-/* ── OPTION CARDS ────────────────────── */
+/* ── OPTION GRID — 2×2 ─────────── */
 .options {
-  max-width: 1400px;
-  margin: 0 auto;
+  max-width: 1400px; margin: 0 auto;
   padding: 0 80px 80px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
 }
 
 .option-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 6px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  border-radius: 6px; overflow: hidden;
+  display: flex; flex-direction: column;
   transition: transform 0.3s var(--ease), border-color 0.3s;
   position: relative;
 }
-.option-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(255,255,255,0.14);
-}
-.option-card.opt-a:hover { border-color: rgba(245,166,35,0.35); }
-.option-card.opt-b:hover { border-color: rgba(192,82,42,0.35); }
-.option-card.opt-c:hover { border-color: rgba(181,99,42,0.35); }
+.option-card:hover { transform: translateY(-5px); }
+.opt-a:hover { border-color: rgba(245,166,35,0.3); }
+.opt-b:hover { border-color: rgba(192,82,42,0.3); }
+.opt-c:hover { border-color: rgba(181,99,42,0.3); }
+.opt-d:hover { border-color: rgba(45,90,61,0.4); }
 
-/* Accent top strip */
+/* Accent strip */
 .option-card::before {
-  content: '';
-  display: block;
-  height: 3px;
-  width: 100%;
-  flex-shrink: 0;
+  content: ''; display: block; height: 3px; width: 100%; flex-shrink: 0;
 }
-.opt-a::before { background: var(--a-amber); }
-.opt-b::before { background: var(--b-terra); }
-.opt-c::before { background: var(--c-copper); }
+.opt-a::before { background: var(--a-col); }
+.opt-b::before { background: var(--b-col); }
+.opt-c::before { background: var(--c-col); }
+.opt-d::before { background: var(--d-col); }
 
-/* Preview window — iframe */
+/* Preview iframe */
 .preview-window {
-  width: 100%;
-  aspect-ratio: 16/10;
-  position: relative;
-  overflow: hidden;
+  width: 100%; aspect-ratio: 16/10;
+  position: relative; overflow: hidden;
   background: #111;
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
 }
 .preview-window iframe {
-  width: 200%;
-  height: 200%;
-  transform: scale(0.5);
-  transform-origin: top left;
-  border: none;
-  pointer-events: none;
-  display: block;
+  width: 200%; height: 200%;
+  transform: scale(0.5); transform-origin: top left;
+  border: none; pointer-events: none; display: block;
 }
-/* Overlay so the iframe doesn't capture hover events on card */
 .preview-overlay {
-  position: absolute;
-  inset: 0;
-  cursor: pointer;
+  position: absolute; inset: 0; cursor: pointer;
 }
-
-/* Pill label on preview */
 .preview-label {
-  position: absolute;
-  top: 12px; left: 12px;
+  position: absolute; top: 12px; left: 12px;
   font-family: var(--mono); font-size: 0.54rem;
   letter-spacing: 0.14em; text-transform: uppercase;
   padding: 4px 10px; border-radius: 2px;
   z-index: 2; pointer-events: none;
 }
-.opt-a .preview-label { background: rgba(245,166,35,0.15); color: var(--a-amber); border: 1px solid rgba(245,166,35,0.3); }
+.opt-a .preview-label { background: rgba(245,166,35,0.15); color: var(--a-col); border: 1px solid rgba(245,166,35,0.3); }
 .opt-b .preview-label { background: rgba(192,82,42,0.15); color: #e8845a; border: 1px solid rgba(192,82,42,0.3); }
 .opt-c .preview-label { background: rgba(181,99,42,0.15); color: #d4956a; border: 1px solid rgba(181,99,42,0.3); }
+.opt-d .preview-label { background: rgba(45,90,61,0.15); color: #6abf8a; border: 1px solid rgba(45,90,61,0.35); }
 
 /* Card body */
 .card-body {
-  padding: 28px 28px 20px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+  padding: 28px 28px 20px; flex: 1;
+  display: flex; flex-direction: column;
 }
 .card-option-num {
   font-family: var(--mono); font-size: 0.54rem;
@@ -181,81 +156,73 @@ header {
 }
 .card-title {
   font-family: var(--serif); font-size: 1.5rem;
-  color: var(--white); margin-bottom: 6px;
-  line-height: 1.1;
+  color: var(--white); margin-bottom: 6px; line-height: 1.1;
 }
 .card-subtitle {
   font-family: var(--mono); font-size: 0.58rem;
-  letter-spacing: 0.1em; color: var(--dim);
-  margin-bottom: 18px;
+  letter-spacing: 0.1em; color: var(--dim); margin-bottom: 18px;
 }
 .card-desc {
   font-size: 0.82rem; color: var(--off);
   line-height: 1.68; font-weight: 300;
   margin-bottom: 20px; flex: 1;
 }
-
-/* Palette swatches */
 .swatches {
-  display: flex; gap: 6px; margin-bottom: 22px; align-items: center;
+  display: flex; gap: 6px; margin-bottom: 20px; align-items: center;
 }
 .swatch {
-  width: 18px; height: 18px;
-  border-radius: 50%;
+  width: 18px; height: 18px; border-radius: 50%;
   border: 1px solid rgba(255,255,255,0.1);
 }
 .swatch-label {
   font-family: var(--mono); font-size: 0.52rem;
-  letter-spacing: 0.1em; color: var(--dim);
-  margin-left: 4px;
+  letter-spacing: 0.1em; color: var(--dim); margin-left: 4px;
 }
-
-/* Tags */
-.card-tags {
-  display: flex; gap: 6px; flex-wrap: wrap;
-  margin-bottom: 24px;
-}
+.card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
 .card-tag {
   font-family: var(--mono); font-size: 0.52rem;
   letter-spacing: 0.1em; text-transform: uppercase;
   padding: 3px 9px; border-radius: 2px;
   border: 1px solid var(--border); color: var(--dim);
 }
-
-/* Open button */
-.card-cta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 20px;
-  border-top: 1px solid var(--border);
-  text-decoration: none;
-  transition: background 0.2s;
-  flex-shrink: 0;
+/* NEW tag highlight for option d */
+.tag-new {
+  border-color: rgba(45,90,61,0.4);
+  color: #6abf8a;
+  background: rgba(45,90,61,0.1);
 }
-.option-card.opt-a .card-cta:hover { background: rgba(245,166,35,0.07); }
-.option-card.opt-b .card-cta:hover { background: rgba(192,82,42,0.07); }
-.option-card.opt-c .card-cta:hover { background: rgba(181,99,42,0.07); }
+
+/* CTA bar */
+.card-cta {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px; border-top: 1px solid var(--border);
+  text-decoration: none; transition: background 0.2s; flex-shrink: 0;
+}
+.opt-a .card-cta:hover { background: rgba(245,166,35,0.07); }
+.opt-b .card-cta:hover { background: rgba(192,82,42,0.07); }
+.opt-c .card-cta:hover { background: rgba(181,99,42,0.07); }
+.opt-d .card-cta:hover { background: rgba(45,90,61,0.1); }
 .cta-text {
   font-family: var(--mono); font-size: 0.6rem;
   letter-spacing: 0.12em; text-transform: uppercase;
 }
-.opt-a .cta-text { color: var(--a-amber); }
+.opt-a .cta-text { color: var(--a-col); }
 .opt-b .cta-text { color: #e8845a; }
 .opt-c .cta-text { color: #d4956a; }
+.opt-d .cta-text { color: #6abf8a; }
 .cta-arrow {
   font-size: 1rem;
   transition: transform 0.2s var(--ease);
 }
-.opt-a .cta-arrow { color: var(--a-amber); }
+.opt-a .cta-arrow { color: var(--a-col); }
 .opt-b .cta-arrow { color: #e8845a; }
 .opt-c .cta-arrow { color: #d4956a; }
+.opt-d .cta-arrow { color: #6abf8a; }
 .option-card:hover .cta-arrow { transform: translateX(5px); }
 
-/* ── COMPARE TABLE ───────────────────── */
+/* ── COMPARE TABLE ──────────────── */
 .compare-section {
-  max-width: 1400px;
-  margin: 0 auto;
+  max-width: 1400px; margin: 0 auto;
   padding: 0 80px 80px;
 }
 .compare-title {
@@ -264,54 +231,47 @@ header {
   color: var(--dim); margin-bottom: 20px;
 }
 .compare-table {
-  width: 100%;
-  border-collapse: collapse;
+  width: 100%; border-collapse: collapse;
   border: 1px solid var(--border);
-  border-radius: 4px;
-  overflow: hidden;
+  border-radius: 4px; overflow: hidden;
 }
 .compare-table th {
-  padding: 14px 20px;
-  font-family: var(--mono); font-size: 0.56rem;
+  padding: 14px 18px;
+  font-family: var(--mono); font-size: 0.54rem;
   letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--dim); text-align: left;
   background: var(--surface2);
   border-bottom: 1px solid var(--border);
   font-weight: 400;
 }
-.compare-table th:first-child { width: 200px; }
-.compare-table th.a-col { color: var(--a-amber); }
-.compare-table th.b-col { color: #e8845a; }
-.compare-table th.c-col { color: #d4956a; }
+.compare-table th:first-child { width: 180px; }
+.th-a { color: var(--a-col); }
+.th-b { color: #e8845a; }
+.th-c { color: #d4956a; }
+.th-d { color: #6abf8a; }
 .compare-table td {
-  padding: 13px 20px;
-  font-size: 0.78rem; color: var(--off);
+  padding: 12px 18px;
+  font-size: 0.76rem; color: var(--off);
   border-bottom: 1px solid rgba(255,255,255,0.04);
-  vertical-align: middle;
-  line-height: 1.5;
+  vertical-align: middle; line-height: 1.5;
 }
 .compare-table tr:last-child td { border-bottom: none; }
 .compare-table td:first-child {
-  font-family: var(--mono); font-size: 0.56rem;
+  font-family: var(--mono); font-size: 0.54rem;
   letter-spacing: 0.1em; text-transform: uppercase;
   color: var(--dim); font-weight: 400;
 }
 .compare-table tr:hover td { background: rgba(255,255,255,0.015); }
-.check { color: #6bcf8a; font-size: 0.85rem; }
-.dash  { color: var(--border); font-size: 0.85rem; }
+.check { color: #6bcf8a; }
+.dash  { color: rgba(255,255,255,0.12); }
 
-/* ── FOOTER NOTE ─────────────────────── */
+/* ── FOOTER ─────────────────────── */
 .hub-footer {
-  max-width: 1400px;
-  margin: 0 auto;
+  max-width: 1400px; margin: 0 auto;
   padding: 0 80px 64px;
-  border-top: 1px solid var(--border);
-  padding-top: 32px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
+  border-top: 1px solid var(--border); padding-top: 32px;
+  display: flex; justify-content: space-between;
+  align-items: center; gap: 24px; flex-wrap: wrap;
 }
 .hub-footer-left {
   font-family: var(--mono); font-size: 0.54rem;
@@ -322,13 +282,12 @@ header {
   letter-spacing: 0.1em; color: var(--dim);
 }
 
-/* ── ANIMATIONS ──────────────────────── */
-.option-card {
-  animation: fadeUp 0.7s var(--ease) both;
-}
-.opt-a { animation-delay: 0.1s; }
-.opt-b { animation-delay: 0.22s; }
-.opt-c { animation-delay: 0.34s; }
+/* ── ANIMATIONS ─────────────────── */
+.option-card { animation: fadeUp 0.7s var(--ease) both; }
+.opt-a { animation-delay: 0.08s; }
+.opt-b { animation-delay: 0.18s; }
+.opt-c { animation-delay: 0.28s; }
+.opt-d { animation-delay: 0.38s; }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: none; }
@@ -347,18 +306,18 @@ header {
       <strong>Client:</strong> Mane Financial Pty Ltd<br>
       <strong>Project:</strong> Website Redesign<br>
       <strong>Prepared:</strong> April 2026<br>
-      <strong>Stage:</strong> Design Proposals — Round 1
+      <strong>Stage:</strong> Design Proposals — Round 2
     </div>
   </div>
 
-  <h1 class="headline">Three directions.<br>One decision.</h1>
-  <p class="subline">Below are three distinct design approaches for the Mane Financial website. Each uses different typography, colour systems, and layout logic. Click <em>Open in full</em> on any option to review it at full scale.</p>
+  <h1 class="headline">Four directions.<br>One decision.</h1>
+  <p class="subline">Four distinct design approaches for the Mane Financial website — each with different typography, colour systems, and layout philosophy. Click any card or use <em>Open in full</em> to review at full scale. All prototypes are fully interactive.</p>
 </header>
 
-<!-- ── OPTION CARDS ──────────────────── -->
+<!-- OPTIONS 2×2 GRID -->
 <div class="options">
 
-  <!-- OPTION A -->
+  <!-- A -->
   <div class="option-card opt-a">
     <div class="preview-window">
       <iframe src="mane-option-a.html" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
@@ -369,7 +328,7 @@ header {
       <div class="card-option-num">Option A</div>
       <div class="card-title">Midnight Editorial</div>
       <div class="card-subtitle">Charcoal · Amber · Bebas Neue + Libre Baskerville</div>
-      <p class="card-desc">Bold and unapologetic. Deep charcoal backgrounds with electric amber accents. Large Bebas Neue display type sits beside italic Baskerville serif — a confident contrast that feels more like a financial magazine than a mortgage broker's website. Services are a hover-animated horizontal list. The amber ticker band below the hero adds movement.</p>
+      <p class="card-desc">Bold and unapologetic. Deep charcoal with electric amber accents. Large Bebas Neue display type beside italic Baskerville serif — confident contrast that reads more like a financial magazine than a broker's website. Services as an animated horizontal list. Amber ticker band for movement.</p>
       <div class="swatches">
         <div class="swatch" style="background:#141414"></div>
         <div class="swatch" style="background:#1c1c1c"></div>
@@ -381,7 +340,7 @@ header {
         <span class="card-tag">Dark theme</span>
         <span class="card-tag">Editorial</span>
         <span class="card-tag">High contrast</span>
-        <span class="card-tag">Bold typography</span>
+        <span class="card-tag">Bold type</span>
       </div>
     </div>
     <a href="mane-option-a.html" target="_blank" class="card-cta">
@@ -390,7 +349,7 @@ header {
     </a>
   </div>
 
-  <!-- OPTION B -->
+  <!-- B -->
   <div class="option-card opt-b">
     <div class="preview-window">
       <iframe src="mane-option-b.html" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
@@ -401,9 +360,9 @@ header {
       <div class="card-option-num">Option B</div>
       <div class="card-title">Soft Prestige</div>
       <div class="card-subtitle">Warm White · Terracotta · DM Serif Display + Epilogue</div>
-      <p class="card-desc">Refined and approachable. Pure white and warm off-white with a single terracotta accent — no competing colours, no noise. DM Serif Display in italic cuts handles all headlines. Service rows use a subtle vertical bar that animates up on hover. The calculator sits inside the process section for a natural flow. Feels elevated without being cold.</p>
+      <p class="card-desc">Refined and approachable. Pure white and warm off-white with a single terracotta accent — no competing colours, no visual noise. DM Serif Display in italic cuts handles all headlines. Service rows animate with a vertical bar. The calculator sits naturally inside the process section.</p>
       <div class="swatches">
-        <div class="swatch" style="background:#ffffff; border-color:rgba(255,255,255,0.15)"></div>
+        <div class="swatch" style="background:#ffffff;border-color:rgba(255,255,255,0.15)"></div>
         <div class="swatch" style="background:#f3f0ea"></div>
         <div class="swatch" style="background:#c0522a"></div>
         <div class="swatch" style="background:#2c3038"></div>
@@ -422,7 +381,7 @@ header {
     </a>
   </div>
 
-  <!-- OPTION C -->
+  <!-- C -->
   <div class="option-card opt-c">
     <div class="preview-window">
       <iframe src="mane-option-c.html" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
@@ -433,7 +392,7 @@ header {
       <div class="card-option-num">Option C</div>
       <div class="card-title">Warm Authority</div>
       <div class="card-subtitle">Forest Green · Cream · Copper · Cormorant Garamond</div>
-      <p class="card-desc">Premium and grounded. Deep forest green on the hero right panel contrasts with warm cream throughout. Cormorant Garamond brings an authoritative, almost legal-document quality to headlines. The rolling copper marquee strip below the hero adds character. Services use a clean two-column grid with copper underline reveals. Best suited to clients who want to project experience and trustworthiness over everything else.</p>
+      <p class="card-desc">Premium and grounded. Deep forest green contrasts with warm cream. Cormorant Garamond brings an authoritative quality to headlines. Rolling copper marquee strip adds character. Services use a clean two-column grid. Best for clients who want to project experience and trustworthiness above all else.</p>
       <div class="swatches">
         <div class="swatch" style="background:#1f3d2e"></div>
         <div class="swatch" style="background:#f6f1e8"></div>
@@ -454,18 +413,52 @@ header {
     </a>
   </div>
 
+  <!-- D — NEW -->
+  <div class="option-card opt-d">
+    <div class="preview-window">
+      <iframe src="mane-option-d.html" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe>
+      <div class="preview-overlay" onclick="window.open('mane-option-d.html','_blank')"></div>
+      <div class="preview-label">Option D</div>
+    </div>
+    <div class="card-body">
+      <div class="card-option-num">Option D — New</div>
+      <div class="card-title">Radical Simplicity</div>
+      <div class="card-subtitle">White · Sage · Playfair Display + Plus Jakarta Sans</div>
+      <p class="card-desc">Inspired by Tash Lends — but executed with more design intention. Extreme whitespace, a single full-width italic headline, and almost no decoration. Every element earns its place. Type does all the work. Numbered process steps, a clean calculator resource hub, a newsletter section, and team names given full typographic presence. The quietest, most confident option.</p>
+      <div class="swatches">
+        <div class="swatch" style="background:#ffffff;border-color:rgba(255,255,255,0.15)"></div>
+        <div class="swatch" style="background:#f9f8f6"></div>
+        <div class="swatch" style="background:#2d5a3d"></div>
+        <div class="swatch" style="background:#1a1916"></div>
+        <span class="swatch-label">White / Sage / Near-black</span>
+      </div>
+      <div class="card-tags">
+        <span class="card-tag">Light theme</span>
+        <span class="card-tag tag-new">New</span>
+        <span class="card-tag">Minimal</span>
+        <span class="card-tag">Type-led</span>
+        <span class="card-tag">Education-first</span>
+      </div>
+    </div>
+    <a href="mane-option-d.html" target="_blank" class="card-cta">
+      <span class="cta-text">Open in full</span>
+      <span class="cta-arrow">→</span>
+    </a>
+  </div>
+
 </div>
 
-<!-- ── COMPARE TABLE ──────────────────── -->
+<!-- COMPARE TABLE -->
 <div class="compare-section">
   <div class="compare-title">Side-by-side comparison</div>
   <table class="compare-table">
     <thead>
       <tr>
         <th></th>
-        <th class="a-col">Option A — Midnight</th>
-        <th class="b-col">Option B — Soft Prestige</th>
-        <th class="c-col">Option C — Warm Authority</th>
+        <th class="th-a">A — Midnight</th>
+        <th class="th-b">B — Soft Prestige</th>
+        <th class="th-c">C — Warm Authority</th>
+        <th class="th-d">D — Radical Simplicity</th>
       </tr>
     </thead>
     <tbody>
@@ -474,57 +467,67 @@ header {
         <td>Dark / editorial</td>
         <td>Light / refined</td>
         <td>Mixed / premium</td>
+        <td>Light / minimal</td>
       </tr>
       <tr>
-        <td>Primary audience</td>
-        <td>Younger buyers, design-aware clients</td>
-        <td>Broad — first home buyers & refinancers</td>
-        <td>Established buyers, investors, self-employed</td>
+        <td>Audience</td>
+        <td>Younger, design-aware</td>
+        <td>Broad — first home &amp; refi</td>
+        <td>Investors &amp; self-employed</td>
+        <td>Education-first buyers</td>
       </tr>
       <tr>
         <td>Display font</td>
-        <td>Bebas Neue (display)</td>
-        <td>DM Serif Display (italic)</td>
-        <td>Cormorant Garamond (light weight)</td>
-      </tr>
-      <tr>
-        <td>Body font</td>
-        <td>Manrope</td>
-        <td>Epilogue</td>
-        <td>Jost</td>
+        <td>Bebas Neue</td>
+        <td>DM Serif Display</td>
+        <td>Cormorant Garamond</td>
+        <td>Playfair Display (italic)</td>
       </tr>
       <tr>
         <td>Accent colour</td>
-        <td>Electric amber #F5A623</td>
+        <td>Amber #F5A623</td>
         <td>Terracotta #C0522A</td>
         <td>Copper #B5632A</td>
+        <td>Deep Sage #2D5A3D</td>
       </tr>
       <tr>
         <td>Hero layout</td>
-        <td>Split — dark left, rate right</td>
-        <td>Split — white left, warm right</td>
-        <td>Split — cream left, forest right</td>
+        <td>Split panel</td>
+        <td>Split panel</td>
+        <td>Split panel</td>
+        <td>Full-width centred</td>
       </tr>
       <tr>
         <td>Services layout</td>
-        <td>Animated horizontal list</td>
-        <td>Animated horizontal list</td>
+        <td>Animated list</td>
+        <td>Animated list</td>
         <td>2×3 card grid</td>
+        <td>Minimal link list</td>
       </tr>
       <tr>
         <td>Calculator</td>
-        <td><span class="check">✓</span> Sticky beside process steps</td>
-        <td><span class="check">✓</span> Sticky beside process steps</td>
-        <td><span class="check">✓</span> Sticky beside process steps</td>
+        <td><span class="check">✓</span> Beside process</td>
+        <td><span class="check">✓</span> Beside process</td>
+        <td><span class="check">✓</span> Beside process</td>
+        <td><span class="check">✓</span> Resource hub + widget</td>
+      </tr>
+      <tr>
+        <td>Newsletter section</td>
+        <td><span class="dash">—</span></td>
+        <td><span class="dash">—</span></td>
+        <td><span class="dash">—</span></td>
+        <td><span class="check">✓</span></td>
       </tr>
       <tr>
         <td>Marquee / ticker</td>
-        <td><span class="check">✓</span> Amber ticker band</td>
+        <td><span class="check">✓</span> Amber</td>
         <td><span class="dash">—</span></td>
-        <td><span class="check">✓</span> Copper marquee strip</td>
+        <td><span class="check">✓</span> Copper</td>
+        <td><span class="dash">—</span></td>
       </tr>
       <tr>
         <td>Lender panel</td>
+        <td><span class="check">✓</span></td>
         <td><span class="check">✓</span></td>
         <td><span class="check">✓</span></td>
         <td><span class="check">✓</span></td>
@@ -534,24 +537,21 @@ header {
         <td><span class="check">✓</span></td>
         <td><span class="check">✓</span></td>
         <td><span class="check">✓</span></td>
-      </tr>
-      <tr>
-        <td>Inline booking form</td>
-        <td><span class="check">✓</span></td>
-        <td><span class="check">✓</span></td>
         <td><span class="check">✓</span></td>
       </tr>
       <tr>
-        <td>Scroll animations</td>
+        <td>Booking form</td>
+        <td><span class="check">✓</span></td>
         <td><span class="check">✓</span></td>
         <td><span class="check">✓</span></td>
         <td><span class="check">✓</span></td>
       </tr>
       <tr>
-        <td>Tone / feel</td>
-        <td>Confident, modern, striking</td>
-        <td>Calm, trustworthy, approachable</td>
-        <td>Premium, authoritative, warm</td>
+        <td>Tone</td>
+        <td>Confident, striking</td>
+        <td>Calm, trustworthy</td>
+        <td>Premium, authoritative</td>
+        <td>Clear, educational, quiet</td>
       </tr>
     </tbody>
   </table>
@@ -560,7 +560,7 @@ header {
 <div class="hub-footer">
   <div class="hub-footer-left">
     Prepared by Dragon's Gate Development for Mane Financial Pty Ltd · April 2026<br>
-    All prototypes are fully interactive — calculators, hover states and scroll animations are live.
+    All prototypes fully interactive — calculators, hover states and scroll animations are live.
   </div>
   <div class="hub-footer-right">dragon's gate © 2026</div>
 </div>
