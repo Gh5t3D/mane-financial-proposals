@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mane Financial — Option C: Warm Authority | Dragon's Gate</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest:   #1f3d2e;
+  --forest2:  #2a5040;
+  --forest3:  #163326;
+  --cream:    #f6f1e8;
+  --cream2:   #ede7d8;
+  --cream3:   #e2d9c4;
+  --copper:   #b5632a;
+  --copper-lt:#f0d4b8;
+  --ink:      #1a1f1c;
+  --mist:     #7a8a7e;
+  --border:   rgba(31,61,46,0.10);
+  --serif:    'Cormorant Garamond', Georgia, serif;
+  --sans:     'Jost', sans-serif;
+  --mono:     'Courier Prime', monospace;
+  --ease:     cubic-bezier(0.22,1,0.36,1);
+  --nav-h:    70px;
+  --max:      1240px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* Subtle line texture */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;background-image:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(31,61,46,0.006) 3px,rgba(31,61,46,0.006) 4px)}
+
+/* ══ NAV ══════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:rgba(246,241,232,0.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 64px;z-index:500}
+.logo-c{font-family:var(--serif);font-size:1.4rem;font-weight:600;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px;letter-spacing:0.02em}
+.logo-mark{width:30px;height:30px;background:var(--forest);border-radius:3px;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:14px;fill:var(--copper-lt)}
+.nav-c-links{display:flex;align-items:center;gap:30px;list-style:none}
+.nav-c-links a{font-size:0.76rem;font-weight:400;letter-spacing:0.06em;text-transform:uppercase;color:var(--mist);text-decoration:none;transition:color 0.2s}
+.nav-c-links a:hover{color:var(--ink)}
+.nav-c-cta{background:var(--forest);color:var(--cream);padding:10px 22px;font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;border-radius:3px;transition:background 0.2s}
+.nav-c-cta:hover{background:var(--forest2)}
+
+/* ══ HERO ══════════════════════════════
+   Clean two-column split. Left: headline + copy + CTAs + proof row.
+   Right: forest panel with centred rate display only — no floating cards.
+════════════════════════════════════════ */
+#hero-c{min-height:100vh;padding-top:var(--nav-h);display:grid;grid-template-columns:55% 45%;overflow:hidden}
+
+.hero-c-left{padding:88px 64px 88px 80px;display:flex;flex-direction:column;justify-content:center;background:var(--cream)}
+.hero-eyebrow-c{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--mist);display:flex;align-items:center;gap:12px;margin-bottom:32px}
+.hero-eyebrow-c::before{content:'';width:28px;height:1px;background:var(--copper);display:block;flex-shrink:0}
+.hero-h1-c{font-family:var(--serif);font-size:clamp(3.6rem,6.5vw,6.2rem);font-weight:300;line-height:1.04;letter-spacing:-0.01em;color:var(--ink);margin-bottom:26px}
+.hero-h1-c em{font-style:italic;color:var(--forest2)}
+.hero-h1-c strong{font-weight:600;display:block}
+.hero-sub-c{font-family:var(--serif);font-style:italic;font-size:1.05rem;line-height:1.72;color:var(--mist);max-width:420px;margin-bottom:44px;font-weight:300}
+.hero-btns-c{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:60px}
+.btn-c{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:0.76rem;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;text-decoration:none;padding:13px 28px;border-radius:3px;transition:all 0.22s var(--ease);cursor:pointer;border:none}
+.btn-forest{background:var(--forest);color:var(--cream)}
+.btn-forest:hover{background:var(--forest2);transform:translateY(-2px);box-shadow:0 10px 28px rgba(31,61,46,0.2)}
+.btn-out-c{background:transparent;color:var(--ink);border:1.5px solid rgba(26,31,28,0.2)}
+.btn-out-c:hover{border-color:var(--ink);background:var(--ink);color:var(--cream)}
+
+/* Proof strip — 4 equal columns with dividers */
+.proof-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);padding-top:28px}
+.proof-item{padding:0 18px;border-right:1px solid var(--border)}
+.proof-item:first-child{padding-left:0}
+.proof-item:last-child{border-right:none}
+.proof-num{font-family:var(--serif);font-size:1.7rem;font-weight:300;color:var(--ink);line-height:1}
+.proof-label{font-size:0.65rem;color:var(--mist);margin-top:4px;letter-spacing:0.03em;line-height:1.4}
+
+/* Right panel — forest background, centred rate */
+.hero-c-right{background:var(--forest);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:64px 48px;position:relative;overflow:hidden}
+.hero-c-right-mesh{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 30%,rgba(181,99,42,0.18) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 30% 75%,rgba(181,99,42,0.08) 0%,transparent 60%)}
+.hero-c-right-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(246,241,232,0.04) 1px,transparent 1px);background-size:24px 24px}
+.rate-panel{position:relative;z-index:1;text-align:center;width:100%}
+.rp-tag{font-family:var(--mono);font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(246,241,232,0.35);margin-bottom:16px}
+.rp-num{font-family:var(--serif);font-size:clamp(4.5rem,7vw,7rem);font-weight:300;color:rgba(246,241,232,0.95);line-height:1;letter-spacing:-0.02em}
+.rp-num em{font-style:italic;color:var(--copper-lt)}
+.rp-unit{font-family:var(--serif);font-size:1.4rem;font-weight:300;color:rgba(246,241,232,0.4);margin-top:4px;display:block}
+.rp-note{font-family:var(--mono);font-size:0.6rem;color:rgba(246,241,232,0.3);margin-top:10px;line-height:1.5}
+.rp-badge{display:inline-block;margin-top:20px;background:rgba(181,99,42,0.18);border:1px solid rgba(181,99,42,0.35);border-radius:2px;padding:6px 16px;font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--copper-lt)}
+
+/* Intent row — 4 buttons below rate inside right panel */
+.intent-row-c{position:relative;z-index:1;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:100%;margin-top:36px}
+.intent-c{background:rgba(246,241,232,0.05);border:1px solid rgba(246,241,232,0.09);border-radius:3px;padding:16px 18px;text-decoration:none;transition:all 0.22s var(--ease)}
+.intent-c:hover{background:rgba(181,99,42,0.12);border-color:rgba(181,99,42,0.3)}
+.ic-title{font-size:0.82rem;font-weight:500;color:rgba(246,241,232,0.85)}
+.ic-arrow{font-family:var(--mono);font-size:0.6rem;color:var(--copper-lt);margin-top:4px;display:block}
+
+/* ══ MARQUEE ════════════════════════════ */
+.marquee-c{background:var(--forest);padding:14px 0;overflow:hidden;border-top:1px solid rgba(246,241,232,0.06)}
+.marquee-c-track{display:inline-flex;animation:mq 28s linear infinite;white-space:nowrap}
+.marquee-c-item{display:inline-flex;align-items:center;gap:14px;padding:0 28px;font-family:var(--mono);font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(246,241,232,0.4);border-right:1px solid rgba(246,241,232,0.07);flex-shrink:0}
+.marquee-c-item.hi{color:var(--copper-lt)}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ══ SHARED ════════════════════════════ */
+.section-c{padding:96px 80px}
+.inner-c{max-width:var(--max);margin:0 auto}
+.ey-c{font-family:var(--mono);font-size:0.56rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--copper);margin-bottom:14px}
+.sec-h2-c{font-family:var(--serif);font-size:clamp(2.2rem,3.8vw,3.4rem);font-weight:300;line-height:1.08;letter-spacing:-0.01em;color:var(--ink)}
+.sec-h2-c em{font-style:italic;color:var(--forest)}
+.sec-h2-c strong{font-weight:600}
+.sec-header-c{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:52px;flex-wrap:wrap}
+.sec-lead-c{font-family:var(--serif);font-style:italic;font-size:0.95rem;color:var(--mist);line-height:1.68;max-width:300px;font-weight:300}
+
+/* ══ SERVICES ══════════════════════════
+   Two-column list — clean, no cramming.
+════════════════════════════════════════ */
+#services-c{background:var(--cream)}
+.svc-c-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.svc-c-item{background:var(--cream);padding:36px 40px;cursor:pointer;transition:background 0.25s var(--ease);position:relative}
+.svc-c-item:hover{background:var(--cream2)}
+.svc-c-item::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--copper);transition:width 0.35s var(--ease)}
+.svc-c-item:hover::after{width:100%}
+.sci-num{font-family:var(--mono);font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--mist);margin-bottom:14px}
+.sci-name{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--ink);margin-bottom:10px;line-height:1.2}
+.sci-desc{font-size:0.8rem;color:var(--mist);line-height:1.68;max-width:440px}
+.sci-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--forest);margin-top:18px;text-decoration:none;transition:gap 0.2s}
+.svc-c-item:hover .sci-link{gap:12px}
+
+/* ══ PROCESS ════════════════════════════
+   Timeline row + sticky calculator beside it.
+════════════════════════════════════════ */
+#process-c{background:var(--cream2)}
+.proc-c-layout{display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:start}
+.proc-c-step{display:flex;gap:24px;padding:28px 0;border-bottom:1px solid var(--border)}
+.proc-c-step:last-child{border-bottom:none}
+.proc-c-step:hover{padding-left:8px;transition:padding-left 0.2s var(--ease)}
+.pcn{font-family:var(--serif);font-size:2rem;font-weight:300;color:rgba(31,61,46,0.18);line-height:1;flex-shrink:0;width:40px;transition:color 0.2s}
+.proc-c-step:hover .pcn{color:var(--copper)}
+.pct{font-family:var(--serif);font-size:1.05rem;font-weight:400;color:var(--ink);margin-bottom:7px}
+.pcd{font-size:0.8rem;color:var(--mist);line-height:1.68}
+
+/* Calculator */
+.calc-c{background:var(--cream);border:1px solid var(--border);border-radius:4px;padding:32px;position:sticky;top:calc(var(--nav-h)+24px)}
+.calc-c-title{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--ink);margin-bottom:3px}
+.calc-c-sub{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--mist);margin-bottom:26px}
+.cf-field{margin-bottom:18px}
+.cf-label{display:flex;justify-content:space-between;font-family:var(--mono);font-size:0.56rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--mist);margin-bottom:7px}
+.cf-label span{color:var(--copper)}
+.cf-input-wrap{display:flex;align-items:center;background:var(--cream2);border:1.5px solid var(--border);border-radius:3px;overflow:hidden;transition:border-color 0.2s}
+.cf-input-wrap:focus-within{border-color:var(--forest)}
+.cf-prefix{padding:0 12px;font-family:var(--mono);font-size:0.76rem;color:var(--mist);border-right:1px solid var(--border);height:42px;display:flex;align-items:center;flex-shrink:0}
+.cf-input-wrap input[type=number]{flex:1;border:none;background:transparent;padding:0 12px;height:42px;font-family:var(--mono);font-size:0.88rem;color:var(--ink);outline:none}
+input[type=range]{width:100%;accent-color:var(--forest);height:3px;margin-top:8px;cursor:pointer}
+.calc-c-result{background:var(--forest);border-radius:3px;padding:22px;text-align:center;margin:6px 0 10px}
+.ccr-label{font-family:var(--mono);font-size:0.54rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(246,241,232,0.35);margin-bottom:7px}
+.ccr-num{font-family:var(--serif);font-size:3rem;font-weight:300;color:rgba(246,241,232,0.95);line-height:1}
+.ccr-sub{font-size:0.62rem;color:rgba(246,241,232,0.3);margin-top:5px;font-family:var(--mono)}
+.calc-c-btn{width:100%;padding:13px;background:var(--copper);border:none;border-radius:3px;color:#fff;font-family:var(--sans);font-size:0.76rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:all 0.2s}
+.calc-c-btn:hover{background:#9e5523;transform:translateY(-1px)}
+
+/* ══ LENDERS ════════════════════════════ */
+#lenders-c{background:var(--cream3);padding:56px 80px;border-top:1px solid var(--border)}
+.lenders-c-inner{max-width:var(--max);margin:0 auto}
+.lenders-top-c{display:flex;align-items:baseline;gap:16px;margin-bottom:20px}
+.lenders-big{font-family:var(--serif);font-size:2rem;font-weight:300;color:var(--ink)}
+.lenders-label-c{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--mist)}
+.lender-tags-c{display:flex;flex-wrap:wrap;gap:8px}
+.ltag{background:var(--cream2);border:1px solid var(--border);border-radius:2px;padding:6px 14px;font-size:0.74rem;font-weight:400;color:var(--mist);transition:all 0.2s;cursor:default}
+.ltag:hover{background:var(--cream);color:var(--ink)}
+
+/* ══ REVIEWS ════════════════════════════ */
+#reviews-c{background:var(--cream)}
+.reviews-c-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rv-c{background:var(--cream2);border:1px solid var(--border);border-radius:4px;padding:32px;position:relative;overflow:hidden;cursor:pointer;transition:all 0.3s var(--ease)}
+.rv-c:hover{background:var(--cream3);box-shadow:0 8px 32px rgba(31,61,46,0.08);transform:translateY(-3px)}
+.rv-c::before{content:'\201C';font-family:var(--serif);font-size:6rem;color:rgba(181,99,42,0.08);position:absolute;top:4px;left:18px;line-height:1}
+.rv-c-stars{color:#c8920a;font-size:0.85rem;letter-spacing:2px;margin-bottom:16px}
+.rv-c-quote{font-family:var(--serif);font-style:italic;font-size:0.98rem;line-height:1.72;color:var(--ink);margin-bottom:22px;position:relative;z-index:1;font-weight:300}
+.rv-c-author{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--border)}
+.rv-c-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:0.85rem;font-weight:600;color:#fff;flex-shrink:0}
+.av-f{background:var(--forest)} .av-c{background:var(--copper)} .av-g{background:#4a7c6f}
+.rv-c-name{font-size:0.8rem;font-weight:500;color:var(--ink)}
+.rv-c-meta{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.04em;color:var(--mist);margin-top:2px}
+
+/* Google aggregate — right side of header */
+.google-agg{display:flex;align-items:center;gap:14px;border:1px solid var(--border);border-radius:3px;padding:13px 18px;background:var(--cream2)}
+.ga-score{font-family:var(--serif);font-size:1.8rem;font-weight:300;color:var(--ink)}
+.ga-stars{color:#c8920a;font-size:0.85rem;letter-spacing:2px}
+.ga-label{font-family:var(--mono);font-size:0.56rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--mist);margin-top:3px}
+
+/* ══ TEAM ══════════════════════════════ */
+#team-c{background:var(--cream2)}
+.team-c-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tc-c{background:var(--cream);border:1px solid var(--border);border-radius:4px;overflow:hidden;cursor:pointer;transition:all 0.3s var(--ease)}
+.tc-c:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(31,61,46,0.1)}
+.tc-c-top{aspect-ratio:4/5;background:var(--forest);display:flex;flex-direction:column;justify-content:flex-end;padding:18px;position:relative;overflow:hidden}
+.tc-c-glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 20%,rgba(181,99,42,0.14) 0%,transparent 65%)}
+.tc-c-init{font-family:var(--serif);font-size:3rem;font-weight:300;color:rgba(246,241,232,0.1);position:absolute;top:14px;left:18px;line-height:1}
+.tc-c-tags{display:flex;gap:6px;flex-wrap:wrap;position:relative;z-index:1}
+.tc-c-tag{background:rgba(246,241,232,0.07);border:1px solid rgba(246,241,232,0.12);border-radius:2px;padding:2px 9px;font-family:var(--mono);font-size:0.53rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(246,241,232,0.45)}
+.tc-c-body{padding:18px 20px}
+.tc-c-name{font-family:var(--serif);font-size:1.05rem;font-weight:400;color:var(--ink);margin-bottom:3px}
+.tc-c-role{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--copper);margin-bottom:5px}
+.tc-c-cr{font-family:var(--mono);font-size:0.55rem;color:var(--mist)}
+.tc-c-foot{border-top:1px solid var(--border);padding:12px 20px}
+.tc-c-cta{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--forest);text-decoration:none;display:flex;align-items:center;gap:6px;transition:gap 0.2s}
+.tc-c:hover .tc-c-cta{gap:10px}
+
+/* ══ CTA ═══════════════════════════════ */
+#cta-c{background:var(--forest3);padding:100px 80px;position:relative;overflow:hidden}
+.cta-c-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 0% 60%,rgba(181,99,42,0.1) 0%,transparent 55%),radial-gradient(ellipse 35% 35% at 100% 10%,rgba(181,99,42,0.06) 0%,transparent 55%)}
+.cta-c-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;position:relative;z-index:1}
+.cta-c-ey{font-family:var(--mono);font-size:0.56rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(181,99,42,0.6);margin-bottom:16px}
+.cta-c-h2{font-family:var(--serif);font-size:clamp(2.4rem,4vw,3.6rem);font-weight:300;color:rgba(246,241,232,0.95);line-height:1.06;letter-spacing:-0.01em;margin-bottom:18px}
+.cta-c-h2 em{font-style:italic;color:var(--copper-lt)}
+.cta-c-sub{font-size:0.9rem;color:rgba(246,241,232,0.38);line-height:1.74;margin-bottom:36px;font-weight:300}
+.cta-c-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-cream{background:var(--cream);color:var(--forest)}
+.btn-cream:hover{background:var(--cream2);transform:translateY(-2px)}
+.btn-ghost-c{background:transparent;color:rgba(246,241,232,0.6);border:1.5px solid rgba(246,241,232,0.2)}
+.btn-ghost-c:hover{border-color:rgba(246,241,232,0.5);color:rgba(246,241,232,0.9)}
+
+.cta-c-form{background:rgba(246,241,232,0.04);border:1px solid rgba(246,241,232,0.09);border-radius:4px;padding:36px;backdrop-filter:blur(8px)}
+.ccf-title{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:rgba(246,241,232,0.92);margin-bottom:3px}
+.ccf-sub{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(246,241,232,0.28);margin-bottom:24px}
+.ccf-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.ff-c label{display:block;font-family:var(--mono);font-size:0.54rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(246,241,232,0.28);margin-bottom:5px}
+.ff-c input,.ff-c select{width:100%;padding:11px 13px;background:rgba(246,241,232,0.05);border:1.5px solid rgba(246,241,232,0.09);border-radius:3px;color:rgba(246,241,232,0.88);font-family:var(--sans);font-size:0.85rem;outline:none;transition:border-color 0.2s}
+.ff-c input:focus,.ff-c select:focus{border-color:var(--copper)}
+.ff-c input::placeholder{color:rgba(246,241,232,0.18)}
+.ff-c select option{background:var(--forest3)}
+.ccf-submit{width:100%;padding:13px;background:var(--copper);border:none;border-radius:3px;color:#fff;font-family:var(--sans);font-size:0.76rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;margin-top:6px;transition:all 0.22s var(--ease)}
+.ccf-submit:hover{background:#9e5523;transform:translateY(-1px);box-shadow:0 8px 22px rgba(181,99,42,0.3)}
+.ccf-note{font-family:var(--mono);font-size:0.54rem;color:rgba(246,241,232,0.18);text-align:center;margin-top:10px;line-height:1.5}
+
+/* ══ FOOTER ════════════════════════════ */
+.footer-c{background:var(--forest3);border-top:1px solid rgba(246,241,232,0.06);padding:56px 80px 36px}
+.footer-c-top{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(246,241,232,0.06);margin-bottom:28px}
+.fc-brand{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:rgba(246,241,232,0.9);margin-bottom:10px}
+.fc-desc{font-size:0.74rem;color:rgba(246,241,232,0.22);line-height:1.7;max-width:240px}
+.fcc-title{font-family:var(--mono);font-size:0.53rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(181,99,42,0.55);margin-bottom:14px}
+.fcc-links{list-style:none}
+.fcc-links li{margin-bottom:8px}
+.fcc-links a{font-size:0.74rem;color:rgba(246,241,232,0.22);text-decoration:none;transition:color 0.2s}
+.fcc-links a:hover{color:rgba(246,241,232,0.7)}
+.footer-c-legal{max-width:var(--max);margin:0 auto;font-family:var(--mono);font-size:0.58rem;color:rgba(246,241,232,0.15);line-height:1.7}
+
+/* ══ REVEAL ════════════════════════════ */
+[data-reveal]{opacity:0;transform:translateY(16px);transition:opacity 0.65s var(--ease),transform 0.65s var(--ease)}
+[data-reveal].vis{opacity:1;transform:none}
+[data-reveal="d1"]{transition-delay:0.12s}
+[data-reveal="d2"]{transition-delay:0.22s}
+[data-reveal="d3"]{transition-delay:0.32s}
+.hero-c-left>*{animation:riseC 0.9s var(--ease) both}
+.hero-c-left>*:nth-child(1){animation-delay:0.1s}
+.hero-c-left>*:nth-child(2){animation-delay:0.28s}
+.hero-c-left>*:nth-child(3){animation-delay:0.46s}
+.hero-c-left>*:nth-child(4){animation-delay:0.62s}
+.hero-c-left>*:nth-child(5){animation-delay:0.78s}
+.hero-c-right>*{animation:riseC 0.9s var(--ease) both}
+.hero-c-right>*:nth-child(1){animation-delay:0.5s}
+.hero-c-right>*:nth-child(2){animation-delay:0.65s}
+@keyframes riseC{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo-c">
+    <div class="logo-mark"><svg viewBox="0 0 20 20"><path d="M10 2 L18 8 L18 18 L12 18 L12 12 L8 12 L8 18 L2 18 L2 8 Z"/></svg></div>
+    Mane Financial
+  </a>
+  <ul class="nav-c-links">
+    <li><a href="#services-c">Services</a></li>
+    <li><a href="#process-c">Process</a></li>
+    <li><a href="#reviews-c">Reviews</a></li>
+    <li><a href="#team-c">Team</a></li>
+    <li><a href="#cta-c" class="nav-c-cta">Book Free Consult</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero-c">
+  <div class="hero-c-left">
+    <div class="hero-eyebrow-c">Brisbane Mortgage Brokers · Est. 2018</div>
+    <h1 class="hero-h1-c">
+      <em>Finance</em><br>
+      done with<br>
+      <strong>authority.</strong>
+    </h1>
+    <p class="hero-sub-c">Expert Brisbane brokers who search 40+ lenders and handle everything — so you can focus on the life, not the paperwork.</p>
+    <div class="hero-btns-c">
+      <a href="#cta-c" class="btn-c btn-forest">Book a free consultation →</a>
+      <a href="#process-c" class="btn-c btn-out-c">How it works</a>
+    </div>
+    <div class="proof-strip">
+      <div class="proof-item"><div class="proof-num">5.0 ★</div><div class="proof-label">Google Reviews</div></div>
+      <div class="proof-item"><div class="proof-num">40+</div><div class="proof-label">Lenders searched</div></div>
+      <div class="proof-item"><div class="proof-num">$0</div><div class="proof-label">Broker fee to you</div></div>
+      <div class="proof-item"><div class="proof-num">6mo</div><div class="proof-label">Post-settlement care</div></div>
+    </div>
+  </div>
+
+  <div class="hero-c-right">
+    <div class="hero-c-right-mesh"></div>
+    <div class="hero-c-right-dots"></div>
+    <div class="rate-panel">
+      <div class="rp-tag">Current rate guide</div>
+      <div class="rp-num">5.<em>74</em></div>
+      <span class="rp-unit">% per annum</span>
+      <div class="rp-note">Comparison rate 5.95% p.a. · Owner Occupied<br>Principal & Interest · &lt;80% LVR</div>
+      <div class="rp-badge">↓ Rates are falling</div>
+    </div>
+    <div class="intent-row-c">
+      <a class="intent-c" href="#services-c"><div class="ic-title">🏡 Buy a Home</div><span class="ic-arrow">→</span></a>
+      <a class="intent-c" href="#services-c"><div class="ic-title">💰 Refinance</div><span class="ic-arrow">→</span></a>
+      <a class="intent-c" href="#services-c"><div class="ic-title">📈 Invest</div><span class="ic-arrow">→</span></a>
+      <a class="intent-c" href="#services-c"><div class="ic-title">🏗️ Build</div><span class="ic-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-c">
+  <div class="marquee-c-track">
+    <span class="marquee-c-item hi">Mane Financial</span><span class="marquee-c-item">First Home Buyers</span><span class="marquee-c-item">Refinancing</span><span class="marquee-c-item">Investment Loans</span><span class="marquee-c-item hi">40+ Lenders</span><span class="marquee-c-item">Construction Finance</span><span class="marquee-c-item">Asset Finance</span><span class="marquee-c-item">Commercial Property</span><span class="marquee-c-item hi">$0 Broker Fee</span><span class="marquee-c-item">Business Loans</span><span class="marquee-c-item">Self-Employed</span><span class="marquee-c-item">Holland Park West, Brisbane</span>
+    <span class="marquee-c-item hi">Mane Financial</span><span class="marquee-c-item">First Home Buyers</span><span class="marquee-c-item">Refinancing</span><span class="marquee-c-item">Investment Loans</span><span class="marquee-c-item hi">40+ Lenders</span><span class="marquee-c-item">Construction Finance</span><span class="marquee-c-item">Asset Finance</span><span class="marquee-c-item">Commercial Property</span><span class="marquee-c-item hi">$0 Broker Fee</span><span class="marquee-c-item">Business Loans</span><span class="marquee-c-item">Self-Employed</span><span class="marquee-c-item">Holland Park West, Brisbane</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services-c" class="section-c">
+  <div class="inner-c">
+    <div class="sec-header-c" data-reveal>
+      <div><div class="ey-c">What we do</div><h2 class="sec-h2-c">Every lending need,<br><em>covered.</em></h2></div>
+      <p class="sec-lead-c">Six service areas. One team. Your outcome is the only priority.</p>
+    </div>
+    <div class="svc-c-grid">
+      <div class="svc-c-item" data-reveal>
+        <div class="sci-num">01</div>
+        <div class="sci-name">First Home Buyers</div>
+        <div class="sci-desc">We guide you through grants, stamp duty concessions, pre-approval, and settlement — in plain English, at your pace.</div>
+        <a href="#cta-c" class="sci-link">Begin your journey →</a>
+      </div>
+      <div class="svc-c-item" data-reveal="d1">
+        <div class="sci-num">02</div>
+        <div class="sci-name">Refinance & Investment</div>
+        <div class="sci-desc">We search 40+ lenders for better rates and smarter structures. Often thousands per year in real, tangible savings.</div>
+        <a href="#cta-c" class="sci-link">Review my loan →</a>
+      </div>
+      <div class="svc-c-item" data-reveal>
+        <div class="sci-num">03</div>
+        <div class="sci-name">Construction & Renovation</div>
+        <div class="sci-desc">Progress-draw loans handled by brokers who've built homes themselves. We know this from the inside out.</div>
+        <a href="#cta-c" class="sci-link">Talk to us →</a>
+      </div>
+      <div class="svc-c-item" data-reveal="d1">
+        <div class="sci-num">04</div>
+        <div class="sci-name">Asset Finance</div>
+        <div class="sci-desc">Vehicles, equipment, plant — structured around your business cash flow, not what suits the bank.</div>
+        <a href="#cta-c" class="sci-link">Get a quote →</a>
+      </div>
+      <div class="svc-c-item" data-reveal>
+        <div class="sci-num">05</div>
+        <div class="sci-name">Commercial Property</div>
+        <div class="sci-desc">Own your premises rather than renting. Commercial lenders who understand business property strategy.</div>
+        <a href="#cta-c" class="sci-link">Explore options →</a>
+      </div>
+      <div class="svc-c-item" data-reveal="d1">
+        <div class="sci-num">06</div>
+        <div class="sci-name">Business Loans</div>
+        <div class="sci-desc">Franchise purchase, growth capital, or operations funding — business finance structured for your plan.</div>
+        <a href="#cta-c" class="sci-link">Let's talk →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS + CALC -->
+<section id="process-c" class="section-c">
+  <div class="inner-c">
+    <div class="sec-header-c" data-reveal>
+      <div><div class="ey-c">How it works</div><h2 class="sec-h2-c">We handle the complexity.<br><em>You get the outcome.</em></h2></div>
+      <p class="sec-lead-c">Four steps from first call to settlement. Then we stay in your corner.</p>
+    </div>
+    <div class="proc-c-layout">
+      <div>
+        <div class="proc-c-step" data-reveal><div class="pcn">1</div><div><div class="pct">Free discovery call</div><div class="pcd">We learn your goals, timeline, and financial position. No cost, no obligation, no jargon.</div></div></div>
+        <div class="proc-c-step" data-reveal="d1"><div class="pcn">2</div><div><div class="pct">We search the market</div><div class="pcd">40+ lenders compared on rate, policy, and turnaround — because structure matters more than headline rate.</div></div></div>
+        <div class="proc-c-step" data-reveal="d2"><div class="pcn">3</div><div><div class="pct">We handle everything</div><div class="pcd">Paperwork, lenders, solicitors — all coordinated by us so you can focus on what matters.</div></div></div>
+        <div class="proc-c-step" data-reveal="d3"><div class="pcn">4</div><div><div class="pct">Settlement & ongoing care</div><div class="pcd">We celebrate with you at settlement, then check in every 6–12 months to keep your loan working.</div></div></div>
+      </div>
+      <div class="calc-c" data-reveal="d2">
+        <div class="calc-c-title">Repayment calculator</div>
+        <div class="calc-c-sub">// indicative estimate only</div>
+        <div class="cf-field">
+          <div class="cf-label">Loan amount <span id="cA-d">$600,000</span></div>
+          <div class="cf-input-wrap"><span class="cf-prefix">$</span><input type="number" id="c-amt" value="600000" oninput="cC()"></div>
+          <input type="range" min="50000" max="2000000" step="10000" value="600000" oninput="document.getElementById('c-amt').value=this.value;document.getElementById('cA-d').textContent='$'+parseInt(this.value).toLocaleString();cC()">
+        </div>
+        <div class="cf-field">
+          <div class="cf-label">Interest rate <span id="cR-d">5.74%</span></div>
+          <div class="cf-input-wrap"><span class="cf-prefix">%</span><input type="number" id="c-rate" value="5.74" step="0.01" oninput="cC();document.getElementById('cR-d').textContent=this.value+'%'"></div>
+          <input type="range" min="3" max="12" step="0.05" value="5.74" oninput="document.getElementById('c-rate').value=parseFloat(this.value).toFixed(2);document.getElementById('cR-d').textContent=parseFloat(this.value).toFixed(2)+'%';cC()">
+        </div>
+        <div class="cf-field">
+          <div class="cf-label">Loan term <span id="cT-d">30 years</span></div>
+          <div class="cf-input-wrap"><span class="cf-prefix">yrs</span><input type="number" id="c-term" value="30" min="5" max="30" oninput="cC();document.getElementById('cT-d').textContent=this.value+' years'"></div>
+          <input type="range" min="5" max="30" value="30" oninput="document.getElementById('c-term').value=this.value;document.getElementById('cT-d').textContent=this.value+' years';cC()">
+        </div>
+        <div class="calc-c-result">
+          <div class="ccr-label">Monthly repayment (est.)</div>
+          <div class="ccr-num" id="c-out">$3,480</div>
+          <div class="ccr-sub">Principal & Interest · indicative only</div>
+        </div>
+        <button class="calc-c-btn" onclick="document.getElementById('cta-c').scrollIntoView({behavior:'smooth'})">Speak to a broker →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LENDERS -->
+<section id="lenders-c">
+  <div class="lenders-c-inner">
+    <div class="lenders-top-c" data-reveal>
+      <div class="lenders-big">40+</div>
+      <div class="lenders-label-c">lenders on our panel — searched for every client</div>
+    </div>
+    <div class="lender-tags-c" data-reveal="d1">
+      <span class="ltag">CommBank</span><span class="ltag">Westpac</span><span class="ltag">ANZ</span><span class="ltag">NAB</span><span class="ltag">Macquarie</span><span class="ltag">Bank of Queensland</span><span class="ltag">ING</span><span class="ltag">Suncorp</span><span class="ltag">Bankwest</span><span class="ltag">St George</span><span class="ltag">Liberty Financial</span><span class="ltag">Pepper Money</span><span class="ltag">La Trobe</span><span class="ltag">Resimac</span><span class="ltag">Bluestone</span><span class="ltag">Heritage Bank</span><span class="ltag">AMP Bank</span><span class="ltag">+ 23 more</span>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews-c" class="section-c">
+  <div class="inner-c">
+    <div class="sec-header-c" data-reveal>
+      <div><div class="ey-c">Client stories</div><h2 class="sec-h2-c">What our clients<br><em>say about us.</em></h2></div>
+      <div class="google-agg"><div class="ga-score">5.0</div><div><div class="ga-stars">★★★★★</div><div class="ga-label">Google Reviews · Holland Park West</div></div></div>
+    </div>
+    <div class="reviews-c-grid">
+      <div class="rv-c" data-reveal><div class="rv-c-stars">★★★★★</div><p class="rv-c-quote">"Shamus guided us through our first home purchase with patience and clarity. We settled in 6 weeks. Communication was impeccable — never once felt uncertain about the next step."</p><div class="rv-c-author"><div class="rv-c-av av-f">ST</div><div><div class="rv-c-name">Sarah & Tom M.</div><div class="rv-c-meta">First Home Buyers · Bulimba, QLD</div></div></div></div>
+      <div class="rv-c" data-reveal="d1"><div class="rv-c-stars">★★★★★</div><p class="rv-c-quote">"Naveed found a rate 0.65% better than our own bank was offering. Refinance complete in under three weeks. The annual savings are very real."</p><div class="rv-c-author"><div class="rv-c-av av-c">DK</div><div><div class="rv-c-name">David K.</div><div class="rv-c-meta">Property Investor · Camp Hill, QLD</div></div></div></div>
+      <div class="rv-c" data-reveal="d2"><div class="rv-c-stars">★★★★★</div><p class="rv-c-quote">"Complex self-employed situation — we assumed it would be difficult. Shaneal knew precisely which lender to approach. Approved on first application."</p><div class="rv-c-author"><div class="rv-c-av av-g">ML</div><div><div class="rv-c-name">Michael & Lisa P.</div><div class="rv-c-meta">Self-Employed · Paddington, QLD</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team-c" class="section-c">
+  <div class="inner-c">
+    <div class="sec-header-c" data-reveal>
+      <div><div class="ey-c">The team</div><h2 class="sec-h2-c">Meet your<br><em>specialists.</em></h2></div>
+      <p class="sec-lead-c">Four specialist brokers. One commitment — your outcome first.</p>
+    </div>
+    <div class="team-c-grid">
+      <div class="tc-c" data-reveal><div class="tc-c-top"><div class="tc-c-glow"></div><div class="tc-c-init">SD</div><div class="tc-c-tags"><span class="tc-c-tag">Residential</span><span class="tc-c-tag">Commercial</span></div></div><div class="tc-c-body"><div class="tc-c-name">Shamus Devereux</div><div class="tc-c-role">Director & Finance Manager</div><div class="tc-c-cr">Credit Rep. No. 502350</div></div><div class="tc-c-foot"><a href="#cta-c" class="tc-c-cta">Book with Shamus →</a></div></div>
+      <div class="tc-c" data-reveal="d1"><div class="tc-c-top"><div class="tc-c-glow"></div><div class="tc-c-init">NH</div><div class="tc-c-tags"><span class="tc-c-tag">Investment</span><span class="tc-c-tag">Refinance</span></div></div><div class="tc-c-body"><div class="tc-c-name">Naveed Hazraty</div><div class="tc-c-role">Property & Finance Manager</div><div class="tc-c-cr">Credit Rep. No. 522372</div></div><div class="tc-c-foot"><a href="#cta-c" class="tc-c-cta">Book with Naveed →</a></div></div>
+      <div class="tc-c" data-reveal="d2"><div class="tc-c-top"><div class="tc-c-glow"></div><div class="tc-c-init">BN</div><div class="tc-c-tags"><span class="tc-c-tag">Construction</span><span class="tc-c-tag">Asset</span></div></div><div class="tc-c-body"><div class="tc-c-name">Brad Nicoll</div><div class="tc-c-role">Property & Finance Manager</div><div class="tc-c-cr">Credit Rep. No. 547980</div></div><div class="tc-c-foot"><a href="#cta-c" class="tc-c-cta">Book with Brad →</a></div></div>
+      <div class="tc-c" data-reveal="d3"><div class="tc-c-top"><div class="tc-c-glow"></div><div class="tc-c-init">SS</div><div class="tc-c-tags"><span class="tc-c-tag">Complex</span><span class="tc-c-tag">Self-Employed</span></div></div><div class="tc-c-body"><div class="tc-c-name">Shaneal Sharma</div><div class="tc-c-role">Property & Finance Manager</div><div class="tc-c-cr">Credit Rep. No. 595594</div></div><div class="tc-c-foot"><a href="#cta-c" class="tc-c-cta">Book with Shaneal →</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-c">
+  <div class="cta-c-bg"></div>
+  <div class="cta-c-inner">
+    <div>
+      <div class="cta-c-ey">Ready to begin</div>
+      <h2 class="cta-c-h2">The right loan for your life, <em>found.</em></h2>
+      <p class="cta-c-sub">Free, no-obligation. Online, by phone, or at your place. Brisbane-based, helping Australians nationwide.</p>
+      <div class="cta-c-btns">
+        <a href="tel:+61" class="btn-c btn-cream">📞 Call us directly</a>
+        <a href="mailto:hello@manefinancial.com.au" class="btn-c btn-ghost-c">Send an email →</a>
+      </div>
+    </div>
+    <div class="cta-c-form">
+      <div class="ccf-title">Book a free consult</div>
+      <div class="ccf-sub">We call you within 4 business hours</div>
+      <div class="ccf-row">
+        <div class="ff-c"><label>First name</label><input type="text" placeholder="Jane"></div>
+        <div class="ff-c"><label>Last name</label><input type="text" placeholder="Smith"></div>
+        <div class="ff-c"><label>Phone</label><input type="tel" placeholder="04xx xxx xxx"></div>
+        <div class="ff-c"><label>Email</label><input type="email" placeholder="jane@email.com"></div>
+      </div>
+      <div class="ff-c" style="margin-bottom:10px"><label>I am looking to</label><select><option>Buy my first home</option><option>Purchase an investment property</option><option>Refinance my existing loan</option><option>Build or renovate</option><option>Finance a vehicle or equipment</option><option>Get a business or commercial loan</option></select></div>
+      <button class="ccf-submit">Book my free consultation →</button>
+      <p class="ccf-note">Your privacy is protected. We never sell your data. Mane Financial Pty Ltd ABN 65 620 458 880.</p>
+    </div>
+  </div>
+</section>
+
+<div class="footer-c">
+  <div class="footer-c-top">
+    <div><div class="fc-brand">Mane Financial</div><div class="fc-desc">Brisbane's trusted mortgage brokerage. Helping Australians buy, build, and invest with confidence since 2018.</div></div>
+    <div><div class="fcc-title">Services</div><ul class="fcc-links"><li><a href="#">First Home Buyers</a></li><li><a href="#">Refinance</a></li><li><a href="#">Construction</a></li><li><a href="#">Asset Finance</a></li><li><a href="#">Commercial</a></li><li><a href="#">Business Loans</a></li></ul></div>
+    <div><div class="fcc-title">Tools</div><ul class="fcc-links"><li><a href="#">Repayment Calculator</a></li><li><a href="#">Borrowing Power</a></li><li><a href="#">Stamp Duty</a></li></ul></div>
+    <div><div class="fcc-title">Company</div><ul class="fcc-links"><li><a href="#">Meet the Team</a></li><li><a href="#">Book a Call</a></li><li><a href="#">Complaints</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+  </div>
+  <div class="footer-c-legal">Mane Financial Pty Ltd ABN 65 620 458 880. Credit Representative 502093 of QED Risk Services Pty Ltd ACL 387856. General information only. © 2025 Mane Financial Pty Ltd</div>
+</div>
+
+<script>
+function cC(){const P=parseFloat(document.getElementById('c-amt').value)||0;const r=(parseFloat(document.getElementById('c-rate').value)||5.74)/100/12;const n=(parseFloat(document.getElementById('c-term').value)||30)*12;const m=r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);document.getElementById('c-out').textContent=m>0?'$'+Math.round(m).toLocaleString('en-AU'):'—';}
+cC();
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vis');obs.unobserve(x.target)}})},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('[data-reveal]').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

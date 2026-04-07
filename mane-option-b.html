@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mane Financial — Option B: Soft Prestige | Dragon's Gate</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Epilogue:wght@300;400;500;600&family=Martian+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════
+   TOKENS
+════════════════════════════════ */
+:root {
+  --white:   #ffffff;
+  --off:     #faf9f7;
+  --warm:    #f3f0ea;
+  --warm2:   #e8e3d8;
+  --terra:   #c0522a;
+  --terra2:  #d96a3f;
+  --terra-lt:#f5e6df;
+  --slate:   #2c3038;
+  --slate2:  #3d4450;
+  --mid:     #8a8f9a;
+  --pale:    #c4c8d0;
+  --border:  rgba(44,48,56,0.08);
+  --serif:  'DM Serif Display', Georgia, serif;
+  --sans:   'Epilogue', sans-serif;
+  --mono:   'Martian Mono', monospace;
+  --ease:   cubic-bezier(0.22, 1, 0.36, 1);
+  --nav-h:  68px;
+  --max:    1280px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--slate);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ════════════════════════════════
+   NAV
+════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 64px; z-index: 500;
+}
+.nav-logo {
+  font-family: var(--serif); font-size: 1.3rem;
+  color: var(--slate); text-decoration: none;
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo-dot {
+  width: 7px; height: 7px;
+  background: var(--terra); border-radius: 50%;
+  display: inline-block;
+}
+.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-links a {
+  font-size: 0.76rem; font-weight: 400;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--mid); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--slate); }
+.nav-cta {
+  font-size: 0.74rem; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--terra); text-decoration: none;
+  border-bottom: 1.5px solid var(--terra);
+  padding-bottom: 2px;
+  transition: all 0.2s;
+}
+.nav-cta:hover { color: var(--terra2); border-color: var(--terra2); }
+
+/* ════════════════════════════════
+   HERO — asymmetric: wide left text,
+   narrow right with large stat display
+════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  padding-top: var(--nav-h);
+  display: grid;
+  grid-template-columns: 58% 42%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle warm background on left */
+.hero-left {
+  background: var(--white);
+  padding: 80px 56px 80px 80px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+}
+/* Thin vertical rule — decorative, left of text block */
+.hero-left::before {
+  content: '';
+  position: absolute;
+  left: 48px; top: 15%; bottom: 15%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--terra-lt), transparent);
+}
+
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 0.56rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--mid); margin-bottom: 36px;
+  display: flex; align-items: center; gap: 14px;
+}
+.hero-eyebrow-line {
+  display: block; width: 28px; height: 1px; background: var(--terra); flex-shrink: 0;
+}
+
+.hero-h1 {
+  font-family: var(--serif);
+  font-size: clamp(3.4rem, 6vw, 5.8rem);
+  line-height: 1.04; letter-spacing: -0.02em;
+  color: var(--slate); margin-bottom: 30px;
+  font-weight: 400;
+}
+.hero-h1 em {
+  font-style: italic; color: var(--terra);
+}
+
+.hero-sub {
+  font-size: 1.05rem; line-height: 1.74;
+  color: var(--mid); max-width: 440px;
+  margin-bottom: 48px; font-weight: 300;
+}
+
+.hero-btns {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  margin-bottom: 72px;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--sans); font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.04em; text-decoration: none;
+  padding: 14px 28px; transition: all 0.22s var(--ease);
+  cursor: pointer; border: none;
+}
+.btn-terra {
+  background: var(--terra); color: var(--white);
+  border-radius: 2px;
+}
+.btn-terra:hover { background: var(--terra2); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(192,82,42,0.22); }
+.btn-line {
+  background: transparent; color: var(--slate);
+  border-bottom: 1.5px solid var(--slate);
+  border-radius: 0; padding-left: 0; padding-right: 0;
+}
+.btn-line:hover { color: var(--terra); border-color: var(--terra); }
+
+/* Proof numbers — simple horizontal list */
+.hero-proof {
+  display: flex; gap: 0;
+  border-top: 1px solid var(--border); padding-top: 32px;
+}
+.hp { padding: 0 32px 0 0; }
+.hp:first-child { padding-left: 0; }
+.hp-num {
+  font-family: var(--serif); font-size: 2rem;
+  color: var(--slate); line-height: 1;
+}
+.hp-label {
+  font-family: var(--mono); font-size: 0.56rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--mid); margin-top: 5px;
+}
+
+/* Hero right — off-white panel with rate + intents */
+.hero-right {
+  background: var(--warm);
+  border-left: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+}
+
+/* Decorative large background character */
+.hero-right-bg {
+  position: absolute;
+  font-family: var(--serif); font-style: italic;
+  font-size: 32vw; line-height: 1;
+  color: rgba(44,48,56,0.025);
+  bottom: -0.1em; right: -0.05em;
+  pointer-events: none; user-select: none;
+  letter-spacing: -0.06em;
+}
+
+.hero-right-top {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: center; padding: 56px 52px;
+  position: relative; z-index: 1;
+}
+.rate-label-b {
+  font-family: var(--mono); font-size: 0.55rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--mid); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.rate-label-b::before {
+  content: ''; display: block;
+  width: 18px; height: 1px; background: var(--terra); flex-shrink: 0;
+}
+.rate-hero-num {
+  font-family: var(--serif); font-style: italic;
+  font-size: clamp(4rem, 7.5vw, 7rem);
+  color: var(--slate); line-height: 0.95;
+  letter-spacing: -0.03em; margin-bottom: 14px;
+}
+.rate-hero-num span { font-size: 0.45em; color: var(--mid); font-style: normal; vertical-align: super; }
+.rate-note-b {
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.06em; color: var(--mid); line-height: 1.6;
+  max-width: 240px;
+}
+.rate-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 18px;
+  background: var(--terra-lt); border: 1px solid rgba(192,82,42,0.2);
+  border-radius: 100px; padding: 5px 14px;
+  font-family: var(--mono); font-size: 0.56rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--terra);
+}
+.rate-pill::before { content: '↓'; font-size: 0.8em; }
+
+/* Intent buttons — clean list at the bottom of right panel */
+.hero-right-bottom {
+  border-top: 1px solid var(--border);
+  padding: 0; position: relative; z-index: 1;
+}
+.intent-b {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 52px;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  transition: background 0.2s var(--ease);
+}
+.intent-b:last-child { border-bottom: none; }
+.intent-b:hover { background: var(--white); }
+.intent-b:hover .ib-arrow { transform: translateX(5px); color: var(--terra); }
+.ib-left { display: flex; align-items: center; gap: 12px; }
+.ib-icon { font-size: 1rem; }
+.ib-title { font-size: 0.84rem; font-weight: 500; color: var(--slate); }
+.ib-arrow { font-size: 0.9rem; color: var(--pale); transition: transform 0.2s, color 0.2s; }
+
+/* ════════════════════════════════
+   STAT BAND
+════════════════════════════════ */
+.stat-band {
+  background: var(--slate); padding: 0 80px;
+  display: flex; align-items: stretch;
+  border-bottom: 3px solid var(--terra);
+}
+.stat-band-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 28px 40px 28px 0;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  flex: 1;
+}
+.stat-band-item:first-child { padding-left: 0; }
+.stat-band-item:last-child { border-right: none; }
+.sbi-icon {
+  width: 38px; height: 38px; flex-shrink: 0;
+  background: rgba(192,82,42,0.15);
+  border: 1px solid rgba(192,82,42,0.25);
+  border-radius: 3px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+}
+.sbi-num {
+  font-family: var(--serif); font-size: 1.5rem;
+  color: var(--white); line-height: 1;
+}
+.sbi-label {
+  font-family: var(--mono); font-size: 0.54rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.35); margin-top: 3px;
+}
+
+/* ════════════════════════════════
+   SHARED SECTION STYLES
+════════════════════════════════ */
+.section { padding: 100px 80px; }
+.inner { max-width: var(--max); margin: 0 auto; }
+.ey {
+  font-family: var(--mono); font-size: 0.55rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--terra); margin-bottom: 14px;
+}
+.sec-h2 {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+  font-weight: 400; line-height: 1.08;
+  letter-spacing: -0.02em; color: var(--slate);
+}
+.sec-h2 em { font-style: italic; }
+.sec-hdr {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; gap: 40px;
+  margin-bottom: 56px; flex-wrap: wrap;
+}
+.sec-lead {
+  font-size: 0.9rem; color: var(--mid);
+  line-height: 1.72; max-width: 300px; font-weight: 300;
+}
+
+/* ════════════════════════════════
+   SERVICES — alternating left/right
+   large number, name, desc, link
+════════════════════════════════ */
+#services { background: var(--white); }
+.svc-table { border-top: 1px solid var(--border); }
+.svc-row-b {
+  display: grid;
+  grid-template-columns: 80px 1fr 1.5fr auto;
+  align-items: center; gap: 40px;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: padding-left 0.28s var(--ease);
+  position: relative;
+}
+.svc-row-b::before {
+  content: ''; position: absolute;
+  left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--terra);
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform 0.3s var(--ease);
+}
+.svc-row-b:hover { padding-left: 16px; }
+.svc-row-b:hover::before { transform: scaleY(1); }
+.svc-row-b:hover .svc-b-num { color: var(--terra); }
+.svc-row-b:hover .svc-b-arr { transform: translateX(6px); color: var(--terra); }
+.svc-b-num {
+  font-family: var(--serif); font-style: italic;
+  font-size: 2.4rem; color: var(--warm2);
+  line-height: 1; transition: color 0.28s;
+}
+.svc-b-name {
+  font-family: var(--serif); font-size: 1.2rem;
+  color: var(--slate); font-weight: 400;
+}
+.svc-b-desc { font-size: 0.8rem; color: var(--mid); line-height: 1.65; }
+.svc-b-arr {
+  font-size: 1rem; color: var(--pale);
+  transition: transform 0.22s, color 0.22s;
+  flex-shrink: 0;
+}
+
+/* ════════════════════════════════
+   PROCESS — numbered vertical
+   with sticky calc on the right
+════════════════════════════════ */
+#process { background: var(--off); }
+.proc-layout {
+  display: grid; grid-template-columns: 1fr 400px;
+  gap: 72px; align-items: start;
+}
+.proc-step-b {
+  display: flex; gap: 24px;
+  padding: 28px 0; border-bottom: 1px solid var(--border);
+  transition: padding-left 0.2s var(--ease);
+}
+.proc-step-b:hover { padding-left: 8px; }
+.proc-step-b:hover .psb-num { color: var(--terra); }
+.proc-step-b:last-child { border-bottom: none; }
+.psb-num {
+  font-family: var(--serif); font-style: italic;
+  font-size: 2rem; color: var(--warm2);
+  line-height: 1; flex-shrink: 0; width: 40px;
+  transition: color 0.2s;
+}
+.psb-title {
+  font-family: var(--serif); font-size: 1.05rem;
+  color: var(--slate); margin-bottom: 7px;
+}
+.psb-desc { font-size: 0.8rem; color: var(--mid); line-height: 1.68; }
+
+/* Calculator */
+.calc-b {
+  background: var(--slate);
+  border-radius: 3px; padding: 36px;
+  position: sticky; top: calc(var(--nav-h) + 24px);
+}
+.calc-b-title {
+  font-family: var(--serif); font-size: 1.4rem;
+  color: var(--white); margin-bottom: 3px;
+}
+.calc-b-sub {
+  font-family: var(--mono); font-size: 0.56rem;
+  letter-spacing: 0.1em; color: rgba(255,255,255,0.25);
+  margin-bottom: 28px;
+}
+.calc-b-field { margin-bottom: 18px; }
+.cbl {
+  display: flex; justify-content: space-between;
+  font-family: var(--mono); font-size: 0.55rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.28); margin-bottom: 7px;
+}
+.cbl span { color: var(--terra2); }
+.cb-row {
+  display: flex; align-items: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 2px; overflow: hidden;
+  transition: border-color 0.2s;
+}
+.cb-row:focus-within { border-color: var(--terra); }
+.cb-pre {
+  padding: 0 12px; font-family: var(--mono);
+  font-size: 0.76rem; color: rgba(255,255,255,0.25);
+  border-right: 1px solid rgba(255,255,255,0.08);
+  height: 42px; display: flex; align-items: center; flex-shrink: 0;
+}
+.cb-row input[type=number] {
+  flex: 1; border: none; background: transparent;
+  padding: 0 12px; height: 42px;
+  font-family: var(--mono); font-size: 0.88rem;
+  color: var(--white); outline: none;
+}
+input[type=range] {
+  width: 100%; accent-color: var(--terra);
+  height: 3px; margin-top: 8px; cursor: pointer;
+}
+.calc-b-result {
+  background: var(--terra); border-radius: 2px;
+  padding: 22px; text-align: center; margin: 8px 0 12px;
+}
+.cbr-label {
+  font-family: var(--mono); font-size: 0.52rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); margin-bottom: 6px;
+}
+.cbr-num {
+  font-family: var(--serif); font-size: 2.8rem;
+  color: var(--white); line-height: 1; font-style: italic;
+}
+.cbr-sub { font-size: 0.62rem; color: rgba(255,255,255,0.5); margin-top: 5px; font-family: var(--mono); }
+.calc-b-cta {
+  width: 100%; padding: 13px;
+  background: var(--white); border: none; border-radius: 2px;
+  color: var(--slate); font-family: var(--sans);
+  font-size: 0.76rem; font-weight: 600;
+  letter-spacing: 0.04em; cursor: pointer;
+  transition: all 0.2s;
+}
+.calc-b-cta:hover { background: var(--off); transform: translateY(-1px); }
+
+/* ════════════════════════════════
+   LENDERS
+════════════════════════════════ */
+#lenders { background: var(--white); padding: 60px 80px; border-top: 1px solid var(--border); }
+.lenders-inner { max-width: var(--max); margin: 0 auto; }
+.lenders-hdr {
+  display: flex; align-items: baseline; gap: 16px; margin-bottom: 22px;
+}
+.lenders-num {
+  font-family: var(--serif); font-size: 2rem; color: var(--slate);
+}
+.lenders-txt {
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid);
+}
+.lender-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+.lender-pill-b {
+  background: var(--warm); border: 1px solid var(--border);
+  border-radius: 100px; padding: 6px 16px;
+  font-size: 0.76rem; color: var(--mid);
+  transition: all 0.18s;
+}
+.lender-pill-b:hover {
+  background: var(--terra-lt);
+  border-color: rgba(192,82,42,0.2);
+  color: var(--terra);
+}
+
+/* ════════════════════════════════
+   REVIEWS — large quote style
+════════════════════════════════ */
+#reviews { background: var(--off); }
+.reviews-b-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 24px;
+}
+.rv-b {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 3px; padding: 36px;
+  transition: all 0.28s var(--ease);
+  position: relative; overflow: hidden;
+}
+.rv-b::after {
+  content: ''; position: absolute;
+  left: 0; top: 0; bottom: 0; width: 3px;
+  background: var(--terra);
+  transform: scaleY(0); transform-origin: top;
+  transition: transform 0.35s var(--ease);
+}
+.rv-b:hover { box-shadow: 0 10px 40px rgba(44,48,56,0.08); transform: translateY(-3px); }
+.rv-b:hover::after { transform: scaleY(1); }
+.rv-b-stars { color: var(--terra); font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 16px; }
+.rv-b-quote {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1rem; line-height: 1.72; color: var(--slate);
+  margin-bottom: 24px; font-weight: 400;
+}
+.rv-b-divider { width: 28px; height: 1px; background: var(--terra); margin-bottom: 16px; }
+.rv-b-name { font-size: 0.82rem; font-weight: 600; color: var(--slate); }
+.rv-b-meta { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.06em; color: var(--mid); margin-top: 3px; }
+
+/* Google aggregate beside header */
+.google-b {
+  display: flex; align-items: center; gap: 14px;
+  border: 1px solid var(--border); border-radius: 2px;
+  padding: 12px 20px; background: var(--white);
+}
+.gb-num { font-family: var(--serif); font-size: 1.8rem; color: var(--slate); }
+.gb-stars { color: #c8920a; font-size: 0.85rem; letter-spacing: 1px; }
+.gb-label { font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); margin-top: 3px; }
+
+/* ════════════════════════════════
+   TEAM — minimal cards
+════════════════════════════════ */
+#team { background: var(--white); }
+.team-b-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 20px;
+}
+.tc-b {
+  border: 1px solid var(--border); border-radius: 3px;
+  overflow: hidden; cursor: pointer;
+  transition: all 0.28s var(--ease);
+}
+.tc-b:hover { box-shadow: 0 10px 40px rgba(44,48,56,0.1); transform: translateY(-4px); }
+.tc-b:hover .tcb-cta { color: var(--terra); gap: 10px; }
+.tcb-top {
+  aspect-ratio: 4/5; background: var(--warm);
+  display: flex; flex-direction: column;
+  justify-content: space-between; padding: 20px;
+  position: relative; overflow: hidden;
+}
+/* Large initials as background decoration */
+.tcb-init-bg {
+  position: absolute; font-family: var(--serif); font-style: italic;
+  font-size: 7rem; color: rgba(44,48,56,0.06); line-height: 1;
+  bottom: -10px; right: -10px; pointer-events: none; user-select: none;
+}
+.tcb-init-top {
+  font-family: var(--mono); font-size: 0.56rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--terra); position: relative; z-index: 1;
+}
+.tcb-tags {
+  display: flex; gap: 6px; flex-wrap: wrap; position: relative; z-index: 1;
+}
+.tcb-tag {
+  background: rgba(192,82,42,0.1);
+  border: 1px solid rgba(192,82,42,0.18);
+  border-radius: 100px; padding: 3px 10px;
+  font-size: 0.56rem; color: var(--terra);
+  font-family: var(--mono); letter-spacing: 0.06em; text-transform: uppercase;
+}
+.tcb-body { padding: 18px 20px; background: var(--white); }
+.tcb-name { font-family: var(--serif); font-size: 1.05rem; color: var(--slate); margin-bottom: 3px; }
+.tcb-role { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); margin-bottom: 5px; }
+.tcb-cr { font-family: var(--mono); font-size: 0.54rem; color: var(--pale); }
+.tcb-foot { border-top: 1px solid var(--border); padding: 12px 20px; background: var(--white); }
+.tcb-cta { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); transition: color 0.2s, gap 0.2s; }
+
+/* ════════════════════════════════
+   CTA — dark slate, terracotta accents
+════════════════════════════════ */
+#cta { background: var(--slate); padding: 100px 80px; position: relative; overflow: hidden; }
+.cta-bg-shape {
+  position: absolute; border-radius: 50%;
+  background: radial-gradient(circle, rgba(192,82,42,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-bg-1 { width: 600px; height: 600px; right: -150px; bottom: -200px; }
+.cta-bg-2 { width: 300px; height: 300px; left: 100px; top: -80px; background: radial-gradient(circle, rgba(192,82,42,0.06) 0%, transparent 70%); }
+.cta-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+.cta-ey { font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(192,82,42,0.6); margin-bottom: 16px; }
+.cta-h2 { font-family: var(--serif); font-size: clamp(2.4rem,4vw,3.6rem); font-weight: 400; color: var(--white); line-height: 1.06; letter-spacing: -0.02em; margin-bottom: 18px; }
+.cta-h2 em { font-style: italic; color: var(--terra2); }
+.cta-sub { font-size: 0.9rem; color: rgba(255,255,255,0.38); line-height: 1.74; margin-bottom: 36px; font-weight: 300; }
+.cta-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-white { background: var(--white); color: var(--slate); border-radius: 2px; }
+.btn-white:hover { background: var(--off); }
+.btn-outline-lt { background: transparent; color: rgba(255,255,255,0.55); border-bottom: 1.5px solid rgba(255,255,255,0.22); border-radius: 0; padding-left: 0; padding-right: 0; }
+.btn-outline-lt:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.5); }
+
+/* Form */
+.cta-form-b {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 3px; padding: 36px;
+  backdrop-filter: blur(8px);
+}
+.cfb-title { font-family: var(--serif); font-size: 1.4rem; color: var(--white); margin-bottom: 3px; }
+.cfb-sub { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 24px; }
+.form-b-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.fb label { display: block; font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 5px; }
+.fb input, .fb select {
+  width: 100%; padding: 11px 13px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 2px; color: var(--white);
+  font-family: var(--sans); font-size: 0.85rem;
+  outline: none; transition: border-color 0.2s;
+}
+.fb input:focus, .fb select:focus { border-color: var(--terra); }
+.fb input::placeholder { color: rgba(255,255,255,0.18); }
+.fb select option { background: var(--slate2); }
+.form-b-submit {
+  width: 100%; padding: 13px; background: var(--terra);
+  border: none; border-radius: 2px; color: var(--white);
+  font-family: var(--sans); font-size: 0.76rem; font-weight: 600;
+  letter-spacing: 0.04em; cursor: pointer; margin-top: 6px;
+  transition: all 0.22s var(--ease);
+}
+.form-b-submit:hover { background: var(--terra2); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(192,82,42,0.3); }
+.form-b-note { font-family: var(--mono); font-size: 0.52rem; color: rgba(255,255,255,0.18); text-align: center; margin-top: 10px; line-height: 1.5; }
+
+/* ════════════════════════════════
+   FOOTER
+════════════════════════════════ */
+footer {
+  background: var(--slate2);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 56px 80px 36px;
+}
+.footer-grid {
+  max-width: var(--max); margin: 0 auto;
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px; margin-bottom: 36px;
+}
+.fb-brand { font-family: var(--serif); font-size: 1.3rem; color: var(--white); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.fb-brand-dot { width: 6px; height: 6px; background: var(--terra); border-radius: 50%; }
+.fb-desc { font-size: 0.74rem; color: rgba(255,255,255,0.25); line-height: 1.7; max-width: 240px; }
+.fc-col-title { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(192,82,42,0.5); margin-bottom: 14px; }
+.fc-col-links { list-style: none; }
+.fc-col-links li { margin-bottom: 9px; }
+.fc-col-links a { font-size: 0.74rem; color: rgba(255,255,255,0.22); text-decoration: none; transition: color 0.2s; }
+.fc-col-links a:hover { color: rgba(255,255,255,0.7); }
+.footer-legal { max-width: var(--max); margin: 0 auto; font-family: var(--mono); font-size: 0.56rem; color: rgba(255,255,255,0.14); line-height: 1.7; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06); }
+
+/* ════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════ */
+[data-reveal] {
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
+}
+[data-reveal].vis { opacity: 1; transform: none; }
+[data-reveal="d1"] { transition-delay: 0.1s; }
+[data-reveal="d2"] { transition-delay: 0.2s; }
+[data-reveal="d3"] { transition-delay: 0.3s; }
+
+/* Hero entrance */
+.hero-left > * { animation: riseB 0.9s var(--ease) both; }
+.hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-left > *:nth-child(2) { animation-delay: 0.28s; }
+.hero-left > *:nth-child(3) { animation-delay: 0.44s; }
+.hero-left > *:nth-child(4) { animation-delay: 0.58s; }
+.hero-left > *:nth-child(5) { animation-delay: 0.72s; }
+.hero-right-top { animation: riseB 0.9s var(--ease) 0.55s both; }
+.hero-right-bottom { animation: riseB 0.9s var(--ease) 0.7s both; }
+@keyframes riseB { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════ -->
+<nav>
+  <a href="#" class="nav-logo">
+    Mane Financial <span class="nav-logo-dot"></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#cta" class="nav-cta">Book a free consult →</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════ -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="hero-eyebrow-line"></span>
+      Brisbane Mortgage Brokers · Est. 2018
+    </div>
+    <h1 class="hero-h1">
+      The loan<br>
+      that fits<br>
+      your <em>life.</em>
+    </h1>
+    <p class="hero-sub">
+      Expert brokers who search 40+ lenders and take care of everything — so you can focus on finding the right home, not the right rate.
+    </p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn btn-terra">Book a free consultation →</a>
+      <a href="#process" class="btn btn-line">How it works</a>
+    </div>
+    <div class="hero-proof">
+      <div class="hp"><div class="hp-num">5.0★</div><div class="hp-label">Google Reviews</div></div>
+      <div class="hp"><div class="hp-num">40+</div><div class="hp-label">Lenders searched</div></div>
+      <div class="hp"><div class="hp-num">$0</div><div class="hp-label">Broker fee</div></div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-right-bg">M</div>
+    <div class="hero-right-top">
+      <div class="rate-label-b">Current rate guide</div>
+      <div class="rate-hero-num"><span>%</span>5.74</div>
+      <div class="rate-note-b">
+        per annum · comparison rate 5.95%<br>
+        Owner Occupied · P&amp;I · &lt;80% LVR
+      </div>
+      <div class="rate-pill">Rates are falling</div>
+    </div>
+    <div class="hero-right-bottom">
+      <a class="intent-b" href="#services">
+        <div class="ib-left"><span class="ib-icon">🏡</span><span class="ib-title">Buying a home</span></div>
+        <span class="ib-arrow">→</span>
+      </a>
+      <a class="intent-b" href="#services">
+        <div class="ib-left"><span class="ib-icon">💰</span><span class="ib-title">Refinancing</span></div>
+        <span class="ib-arrow">→</span>
+      </a>
+      <a class="intent-b" href="#services">
+        <div class="ib-left"><span class="ib-icon">📈</span><span class="ib-title">Investment property</span></div>
+        <span class="ib-arrow">→</span>
+      </a>
+      <a class="intent-b" href="#services">
+        <div class="ib-left"><span class="ib-icon">🏗️</span><span class="ib-title">Construction & building</span></div>
+        <span class="ib-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STAT BAND ══════════════════════════ -->
+<div class="stat-band">
+  <div class="stat-band-item">
+    <div class="sbi-icon">⭐</div>
+    <div><div class="sbi-num">5.0</div><div class="sbi-label">Google Reviews</div></div>
+  </div>
+  <div class="stat-band-item">
+    <div class="sbi-icon">🏦</div>
+    <div><div class="sbi-num">40+</div><div class="sbi-label">Lenders on panel</div></div>
+  </div>
+  <div class="stat-band-item">
+    <div class="sbi-icon">🤝</div>
+    <div><div class="sbi-num">$0</div><div class="sbi-label">Broker fee to you</div></div>
+  </div>
+  <div class="stat-band-item">
+    <div class="sbi-icon">👥</div>
+    <div><div class="sbi-num">4</div><div class="sbi-label">Specialist brokers</div></div>
+  </div>
+  <div class="stat-band-item">
+    <div class="sbi-icon">📅</div>
+    <div><div class="sbi-num">6mo</div><div class="sbi-label">Post-settlement care</div></div>
+  </div>
+</div>
+
+<!-- ══ SERVICES ══════════════════════════ -->
+<section id="services" class="section">
+  <div class="inner">
+    <div class="sec-hdr" data-reveal>
+      <div>
+        <div class="ey">What we do</div>
+        <h2 class="sec-h2">Every loan,<br><em>covered.</em></h2>
+      </div>
+      <p class="sec-lead">Six service areas. Four specialist brokers. One goal — your best outcome.</p>
+    </div>
+    <div class="svc-table">
+      <div class="svc-row-b" data-reveal>
+        <div class="svc-b-num">01</div>
+        <div class="svc-b-name">First Home Buyers</div>
+        <div class="svc-b-desc">Grants, stamp duty concessions, pre-approval and settlement — guided every step, in plain English.</div>
+        <div class="svc-b-arr">→</div>
+      </div>
+      <div class="svc-row-b" data-reveal="d1">
+        <div class="svc-b-num">02</div>
+        <div class="svc-b-name">Refinance & Investment</div>
+        <div class="svc-b-desc">40+ lenders searched for better rates and smarter structures. Often thousands per year in savings.</div>
+        <div class="svc-b-arr">→</div>
+      </div>
+      <div class="svc-row-b" data-reveal="d1">
+        <div class="svc-b-num">03</div>
+        <div class="svc-b-name">Construction & Renovation</div>
+        <div class="svc-b-desc">Progress-draw loans handled by brokers who've personally built homes. Complex, made simple.</div>
+        <div class="svc-b-arr">→</div>
+      </div>
+      <div class="svc-row-b" data-reveal="d2">
+        <div class="svc-b-num">04</div>
+        <div class="svc-b-name">Asset Finance</div>
+        <div class="svc-b-desc">Vehicles, equipment, plant — structured around your cash flow, not the bank's preference.</div>
+        <div class="svc-b-arr">→</div>
+      </div>
+      <div class="svc-row-b" data-reveal="d2">
+        <div class="svc-b-num">05</div>
+        <div class="svc-b-name">Commercial Property</div>
+        <div class="svc-b-desc">Own your premises. Commercial lenders who understand business property strategy.</div>
+        <div class="svc-b-arr">→</div>
+      </div>
+      <div class="svc-row-b" data-reveal="d3">
+        <div class="svc-b-num">06</div>
+        <div class="svc-b-name">Business Loans</div>
+        <div class="svc-b-desc">Franchise purchase, growth capital, or operational funding — finance built for your plan.</div>
+        <div class="svc-b-arr">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESS + CALC ═════════════════════ -->
+<section id="process" class="section">
+  <div class="inner">
+    <div class="sec-hdr" data-reveal>
+      <div>
+        <div class="ey">How it works</div>
+        <h2 class="sec-h2">We do the<br><em>heavy lifting.</em></h2>
+      </div>
+      <p class="sec-lead">From first call to settlement — and we stay with you long after.</p>
+    </div>
+    <div class="proc-layout">
+      <div>
+        <div class="proc-step-b" data-reveal>
+          <div class="psb-num">1</div>
+          <div><div class="psb-title">Free discovery call</div><div class="psb-desc">We learn your goals, timeline, and financial position. No cost, no obligation, no jargon — just clarity.</div></div>
+        </div>
+        <div class="proc-step-b" data-reveal="d1">
+          <div class="psb-num">2</div>
+          <div><div class="psb-title">We search the market</div><div class="psb-desc">40+ lenders compared on rate, policy, and turnaround. Structure matters as much as rate.</div></div>
+        </div>
+        <div class="proc-step-b" data-reveal="d2">
+          <div class="psb-num">3</div>
+          <div><div class="psb-title">We handle everything</div><div class="psb-desc">Paperwork, lenders, solicitors — coordinated by us so you can focus on what matters.</div></div>
+        </div>
+        <div class="proc-step-b" data-reveal="d3">
+          <div class="psb-num">4</div>
+          <div><div class="psb-title">Settlement & ongoing care</div><div class="psb-desc">We celebrate with you at settlement, then check in every 6–12 months to keep your loan working.</div></div>
+        </div>
+      </div>
+      <div class="calc-b" data-reveal="d2">
+        <div class="calc-b-title">Repayment calculator</div>
+        <div class="calc-b-sub">// indicative only</div>
+        <div class="calc-b-field">
+          <div class="cbl">Loan amount <span id="bA-d">$600,000</span></div>
+          <div class="cb-row"><span class="cb-pre">$</span><input type="number" id="b-amt" value="600000" oninput="cB()"></div>
+          <input type="range" min="50000" max="2000000" step="10000" value="600000" oninput="document.getElementById('b-amt').value=this.value;document.getElementById('bA-d').textContent='$'+parseInt(this.value).toLocaleString();cB()">
+        </div>
+        <div class="calc-b-field">
+          <div class="cbl">Rate (% p.a.) <span id="bR-d">5.74%</span></div>
+          <div class="cb-row"><span class="cb-pre">%</span><input type="number" id="b-rate" value="5.74" step="0.01" oninput="cB();document.getElementById('bR-d').textContent=this.value+'%'"></div>
+          <input type="range" min="3" max="12" step="0.05" value="5.74" oninput="document.getElementById('b-rate').value=parseFloat(this.value).toFixed(2);document.getElementById('bR-d').textContent=parseFloat(this.value).toFixed(2)+'%';cB()">
+        </div>
+        <div class="calc-b-field">
+          <div class="cbl">Term (years) <span id="bT-d">30 yrs</span></div>
+          <div class="cb-row"><span class="cb-pre">yr</span><input type="number" id="b-term" value="30" min="5" max="30" oninput="cB();document.getElementById('bT-d').textContent=this.value+' yrs'"></div>
+          <input type="range" min="5" max="30" value="30" oninput="document.getElementById('b-term').value=this.value;document.getElementById('bT-d').textContent=this.value+' yrs';cB()">
+        </div>
+        <div class="calc-b-result">
+          <div class="cbr-label">Monthly repayment</div>
+          <div class="cbr-num" id="b-out">$3,480</div>
+          <div class="cbr-sub">P&amp;I · indicative only</div>
+        </div>
+        <button class="calc-b-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Talk to a broker about this →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LENDERS ════════════════════════════ -->
+<section id="lenders">
+  <div class="lenders-inner">
+    <div class="lenders-hdr" data-reveal>
+      <span class="lenders-num">40+</span>
+      <span class="lenders-txt">lenders on our panel — searched for every client, every time</span>
+    </div>
+    <div class="lender-wrap" data-reveal="d1">
+      <span class="lender-pill-b">CommBank</span>
+      <span class="lender-pill-b">Westpac</span>
+      <span class="lender-pill-b">ANZ</span>
+      <span class="lender-pill-b">NAB</span>
+      <span class="lender-pill-b">Macquarie</span>
+      <span class="lender-pill-b">Bank of Queensland</span>
+      <span class="lender-pill-b">ING</span>
+      <span class="lender-pill-b">Suncorp</span>
+      <span class="lender-pill-b">Bankwest</span>
+      <span class="lender-pill-b">St George</span>
+      <span class="lender-pill-b">Liberty Financial</span>
+      <span class="lender-pill-b">Pepper Money</span>
+      <span class="lender-pill-b">La Trobe</span>
+      <span class="lender-pill-b">Resimac</span>
+      <span class="lender-pill-b">Bluestone</span>
+      <span class="lender-pill-b">Heritage Bank</span>
+      <span class="lender-pill-b">AMP Bank</span>
+      <span class="lender-pill-b">+ 23 more</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REVIEWS ════════════════════════════ -->
+<section id="reviews" class="section">
+  <div class="inner">
+    <div class="sec-hdr" data-reveal>
+      <div>
+        <div class="ey">Client stories</div>
+        <h2 class="sec-h2">Don't take our<br><em>word for it.</em></h2>
+      </div>
+      <div class="google-b">
+        <div class="gb-num">5.0</div>
+        <div>
+          <div class="gb-stars">★★★★★</div>
+          <div class="gb-label">Google Reviews · Holland Park West</div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-b-grid">
+      <div class="rv-b" data-reveal>
+        <div class="rv-b-stars">★★★★★</div>
+        <p class="rv-b-quote">"Shamus guided us through our first home purchase with patience and total clarity. We settled in 6 weeks. Never once felt left in the dark."</p>
+        <div class="rv-b-divider"></div>
+        <div class="rv-b-name">Sarah & Tom M.</div>
+        <div class="rv-b-meta">First Home Buyers · Bulimba, QLD</div>
+      </div>
+      <div class="rv-b" data-reveal="d1">
+        <div class="rv-b-stars">★★★★★</div>
+        <p class="rv-b-quote">"Naveed found us a rate 0.65% better than our own bank. The refinance was done in under three weeks. Real, tangible savings every month."</p>
+        <div class="rv-b-divider"></div>
+        <div class="rv-b-name">David K.</div>
+        <div class="rv-b-meta">Property Investor · Camp Hill, QLD</div>
+      </div>
+      <div class="rv-b" data-reveal="d2">
+        <div class="rv-b-stars">★★★★★</div>
+        <p class="rv-b-quote">"Self-employed with complex income — we assumed approval would be hard. Shaneal knew exactly which lender to approach. Approved first go."</p>
+        <div class="rv-b-divider"></div>
+        <div class="rv-b-name">Michael & Lisa P.</div>
+        <div class="rv-b-meta">Self-Employed Buyers · Paddington, QLD</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TEAM ═══════════════════════════════ -->
+<section id="team" class="section">
+  <div class="inner">
+    <div class="sec-hdr" data-reveal>
+      <div>
+        <div class="ey">The team</div>
+        <h2 class="sec-h2">Meet your<br><em>brokers.</em></h2>
+      </div>
+      <p class="sec-lead">Four specialists covering residential, investment, commercial and complex lending.</p>
+    </div>
+    <div class="team-b-grid">
+      <div class="tc-b" data-reveal>
+        <div class="tcb-top">
+          <div class="tcb-init-bg">SD</div>
+          <div class="tcb-init-top">Director</div>
+          <div class="tcb-tags"><span class="tcb-tag">Residential</span><span class="tcb-tag">Commercial</span></div>
+        </div>
+        <div class="tcb-body">
+          <div class="tcb-name">Shamus Devereux</div>
+          <div class="tcb-role">Director & Finance Manager</div>
+          <div class="tcb-cr">CR No. 502350</div>
+        </div>
+        <div class="tcb-foot"><span class="tcb-cta">Book with Shamus →</span></div>
+      </div>
+      <div class="tc-b" data-reveal="d1">
+        <div class="tcb-top">
+          <div class="tcb-init-bg">NH</div>
+          <div class="tcb-init-top">Property & Finance</div>
+          <div class="tcb-tags"><span class="tcb-tag">Investment</span><span class="tcb-tag">Refinance</span></div>
+        </div>
+        <div class="tcb-body">
+          <div class="tcb-name">Naveed Hazraty</div>
+          <div class="tcb-role">Property & Finance Manager</div>
+          <div class="tcb-cr">CR No. 522372</div>
+        </div>
+        <div class="tcb-foot"><span class="tcb-cta">Book with Naveed →</span></div>
+      </div>
+      <div class="tc-b" data-reveal="d2">
+        <div class="tcb-top">
+          <div class="tcb-init-bg">BN</div>
+          <div class="tcb-init-top">Property & Finance</div>
+          <div class="tcb-tags"><span class="tcb-tag">Construction</span><span class="tcb-tag">Asset</span></div>
+        </div>
+        <div class="tcb-body">
+          <div class="tcb-name">Brad Nicoll</div>
+          <div class="tcb-role">Property & Finance Manager</div>
+          <div class="tcb-cr">CR No. 547980</div>
+        </div>
+        <div class="tcb-foot"><span class="tcb-cta">Book with Brad →</span></div>
+      </div>
+      <div class="tc-b" data-reveal="d3">
+        <div class="tcb-top">
+          <div class="tcb-init-bg">SS</div>
+          <div class="tcb-init-top">Property & Finance</div>
+          <div class="tcb-tags"><span class="tcb-tag">Complex</span><span class="tcb-tag">Self-Employed</span></div>
+        </div>
+        <div class="tcb-body">
+          <div class="tcb-name">Shaneal Sharma</div>
+          <div class="tcb-role">Property & Finance Manager</div>
+          <div class="tcb-cr">CR No. 595594</div>
+        </div>
+        <div class="tcb-foot"><span class="tcb-cta">Book with Shaneal →</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ════════════════════════════════ -->
+<section id="cta">
+  <div class="cta-bg-shape cta-bg-1"></div>
+  <div class="cta-bg-shape cta-bg-2"></div>
+  <div class="cta-inner">
+    <div>
+      <div class="cta-ey">Ready to start</div>
+      <h2 class="cta-h2">Let's find the right loan for <em>your life.</em></h2>
+      <p class="cta-sub">Free, no-obligation. Online, by phone, or at your place. Brisbane-based, Australia-wide capability.</p>
+      <div class="cta-btns">
+        <a href="tel:+61" class="btn btn-white">📞 Call us directly</a>
+        <a href="mailto:hello@manefinancial.com.au" class="btn btn-outline-lt">Send an email →</a>
+      </div>
+    </div>
+    <div class="cta-form-b">
+      <div class="cfb-title">Book a free consult</div>
+      <div class="cfb-sub">We call you within 4 business hours</div>
+      <div class="form-b-row">
+        <div class="fb"><label>First name</label><input type="text" placeholder="Jane"></div>
+        <div class="fb"><label>Last name</label><input type="text" placeholder="Smith"></div>
+        <div class="fb"><label>Phone</label><input type="tel" placeholder="04xx xxx xxx"></div>
+        <div class="fb"><label>Email</label><input type="email" placeholder="jane@email.com"></div>
+      </div>
+      <div class="fb" style="margin-bottom:10px">
+        <label>I am looking to</label>
+        <select>
+          <option>Buy my first home</option>
+          <option>Purchase an investment property</option>
+          <option>Refinance my existing loan</option>
+          <option>Build or renovate</option>
+          <option>Finance a vehicle or equipment</option>
+          <option>Get a business or commercial loan</option>
+        </select>
+      </div>
+      <button class="form-b-submit">Book my free consultation →</button>
+      <p class="form-b-note">Privacy protected · Data never sold · Mane Financial Pty Ltd ABN 65 620 458 880</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═════════════════════════════ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="fb-brand">Mane Financial <span class="fb-brand-dot"></span></div>
+      <div class="fb-desc">Brisbane's trusted mortgage brokerage. Helping Australians buy, build, and invest with confidence since 2018. Holland Park West, QLD.</div>
+    </div>
+    <div>
+      <div class="fc-col-title">Services</div>
+      <ul class="fc-col-links">
+        <li><a href="#">First Home Buyers</a></li>
+        <li><a href="#">Refinance</a></li>
+        <li><a href="#">Construction</a></li>
+        <li><a href="#">Asset Finance</a></li>
+        <li><a href="#">Commercial Loans</a></li>
+        <li><a href="#">Business Loans</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fc-col-title">Tools</div>
+      <ul class="fc-col-links">
+        <li><a href="#">Repayment Calculator</a></li>
+        <li><a href="#">Borrowing Power</a></li>
+        <li><a href="#">Stamp Duty</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fc-col-title">Company</div>
+      <ul class="fc-col-links">
+        <li><a href="#">Meet the Team</a></li>
+        <li><a href="#">Book a Call</a></li>
+        <li><a href="#">Complaints</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-legal">Mane Financial Pty Ltd ABN 65 620 458 880. Credit Representative 502093 of QED Risk Services Pty Ltd ACL 387856. General information only — not personal advice. Consider your individual circumstances before acting. © 2025 Mane Financial Pty Ltd</div>
+</footer>
+
+<script>
+function cB() {
+  const P = parseFloat(document.getElementById('b-amt').value) || 0;
+  const r = (parseFloat(document.getElementById('b-rate').value) || 5.74) / 100 / 12;
+  const n = (parseFloat(document.getElementById('b-term').value) || 30) * 12;
+  const m = r === 0 ? P / n : P * r * Math.pow(1+r,n) / (Math.pow(1+r,n) - 1);
+  document.getElementById('b-out').textContent = m > 0 ? '$' + Math.round(m).toLocaleString('en-AU') : '—';
+}
+cB();
+const obs = new IntersectionObserver(e => {
+  e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('vis'); obs.unobserve(x.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
